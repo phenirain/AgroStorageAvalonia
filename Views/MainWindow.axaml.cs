@@ -1,14 +1,12 @@
 using Avalonia.Controls;
+using desktop.ViewModels;
 
 namespace desktop.Views;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(string role)
     {
         InitializeComponent();
-        AuthWindow w = new AuthWindow();
-        w.Show();
-        this.Close();
     }
 }

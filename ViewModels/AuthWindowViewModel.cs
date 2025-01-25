@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using desktop.DTOs.Auth;
 using desktop.Exceptions;
 using desktop.Support.Api;
+using desktop.Views;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Enums;
@@ -45,7 +46,9 @@ public partial class AuthWindowViewModel: ViewModelBase
             AuthResponse response = await ApiHelper.Post<AuthResponse, AuthRequest>(request, "auth");
             if (response.Role != null)
             {
-                
+                MainWindow w = new MainWindow(response.Role);
+                w.Show();
+                currentWindow.Close();
             }
             else
             {

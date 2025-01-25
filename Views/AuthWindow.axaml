@@ -7,7 +7,10 @@
         x:Class="desktop.Views.AuthWindow"
         Title="AuthWindow"
         x:DataType="vm:AuthWindowViewModel"
-        FontSize="16">
+        FontSize="16"
+        CanResize="False"
+        WindowState="Maximized"
+        >
 
     <Design.DataContext>
         <vm:AuthWindowViewModel/>
