@@ -37,6 +37,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     #region DataBindings
 
     [ObservableProperty] private ObservableCollection<Order> _orders;
+    private List<Order> _allOrders;
     [ObservableProperty] private Order? _selectedOrder;
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
@@ -60,6 +61,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     private async Task LoadOrders()
     {
         Orders = await ApiHelper.GetAll<ObservableCollection<Order>>("orders");
+        _allOrders = Orders.ToList();
     }
 
     private async Task LoadClients()
@@ -78,7 +80,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     {
         if (string.IsNullOrEmpty(value))
         {
-            _ = LoadOrders();
+            Orders = new ObservableCollection<Order>(_allOrders);
             return;
         }
         var enumValue = ProgramHelper.GetEnumValueFromEnumMember<OrderStatus>(value);
@@ -111,7 +113,8 @@ public partial class MainOrderPageViewModel: ViewModelBase
             CreateOrder.TotalPrice =
                 Products.First(p => p.Id == CreateOrder.ProductId).Price * CreateOrder.Quantity;
             CreateOrder.Status = OrderStatus.Reserved;
-            await ApiHelper.Post<Order, CreateOrderRequest>(CreateOrder, "orders/reserve");
+            var order = await ApiHelper.Post<Order, CreateOrderRequest>(CreateOrder, "orders/reserve");
+            Orders.Add(order);
         }
         catch (Exception ex)
         {
@@ -137,6 +140,11 @@ public partial class MainOrderPageViewModel: ViewModelBase
             UpdateOrder.TotalPrice =
                 Products.First(p => p.Id == UpdateOrder.ProductId).Price * UpdateOrder.Quantity;
             await ApiHelper.Put<UpdateOrderRequest>(UpdateOrder, $"orders", UpdateOrder.Id);
+            var order = _allOrders.First(o => o.Id == UpdateOrder.Id);
+            order.Product = Products.First(p => p.Id == UpdateOrder.ProductId);
+            order.Client = Clients.First(c => c.Id == UpdateOrder.ClientId);
+            order.TotalPrice = UpdateOrder.TotalPrice;
+            order.Quantity = UpdateOrder.Quantity;
         }
         catch (Exception ex)
         {
