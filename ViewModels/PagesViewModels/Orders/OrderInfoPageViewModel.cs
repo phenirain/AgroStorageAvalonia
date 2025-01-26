@@ -21,7 +21,9 @@ public partial class OrderInfoPageViewModel: ViewModelBase
     public List<string> OrderStatuses { get; set; } = ProgramHelper.GetEnumMemberValues<OrderStatus>();
 
     [ObservableProperty] private Order _order;
-    [ObservableProperty] private string _status;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(UpdateStatusCommand))]
+    private string _status;
     private OrderStatus _lastStatus;
     private readonly UpdateOrderRequest _updateOrder = new UpdateOrderRequest();
 

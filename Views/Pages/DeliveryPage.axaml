@@ -19,24 +19,24 @@
                 Classes="border-default"
                 Padding="5">
                 <DataGrid
-                    ItemsSource=""
-                    SelectedItem="">
+                    ItemsSource="{Binding Deliveries}"
+                    SelectedItem="{Binding SelectedDelivery}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Номер заказа"
-                            Binding=""></DataGridTextColumn>
+                            Binding="{Binding Order.Id}"></DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Клиент"
-                            Binding=""></DataGridTextColumn>
+                            Binding="{Binding Order.Client.CompanyName}"></DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Дата заказа"
-                            Binding=""></DataGridTextColumn>
+                            Binding="{Binding Order.Date}"></DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Статус доставки"
-                            Binding=""></DataGridTextColumn>
+                            Binding="{Binding Status, Converter={StaticResource EnumMemberConverter}}"></DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Маршрут"
-                            Binding=""></DataGridTextColumn>
+                            Binding="{Binding Route}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
@@ -57,23 +57,27 @@
                                 Text="Заказ"></TextBlock>
                             <ComboBox
                                 PlaceholderText="Выберите заказ"
-                                ItemsSource=""
-                                SelectedItem=""></ComboBox>
+                                ItemsSource="{Binding Orders}"
+                                DisplayMemberBinding="{Binding Id}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding CreateDeliveryRequest.OrderId}"></ComboBox>
                             <TextBlock
                                 Classes="p"
-                                Text="Адрес доставки"></TextBlock>
+                                Text="Маршрут"></TextBlock>
                             <TextBox
-                                Watermark="Введите адрес доставки"
+                                Watermark="Введите маршрут"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateDeliveryRequest.Route}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Дата"></TextBlock>
-                            <DatePicker></DatePicker>
+                            <DatePicker SelectedDate="{Binding CreateDeliveryDate}"></DatePicker>
                             <TextBlock
                                 Classes="p"
                                 Text="Транспорт"></TextBlock>
-                            <TextBox Watermark="Введите транспорт"></TextBox>
+                            <TextBox
+                                Watermark="Введите транспорт"
+                                Text="{Binding CreateDeliveryRequest.Transport}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
@@ -83,34 +87,40 @@
                     <Expander
                         Header="Редактировать доставку">
                         <StackPanel
-                             Spacing="10" Margin="20">
+                            Spacing="10" Margin="20">
                             <TextBlock
                                 Classes="h1"
-                                Text="Создание доставки"></TextBlock>
+                                Text="Редактирование доставки"></TextBlock>
                             <TextBlock
                                 Classes="p"
                                 Text="Заказ"></TextBlock>
                             <ComboBox
-                                PlaceholderText="Выберите заказ"></ComboBox>
+                                PlaceholderText="Выберите заказ"
+                                ItemsSource="{Binding Orders}"
+                                DisplayMemberBinding="{Binding Id}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding UpdateDeliveryRequest.OrderId}"></ComboBox>
                             <TextBlock
                                 Classes="p"
-                                Text="Адрес доставки"></TextBlock>
+                                Text="Маршрут"></TextBlock>
                             <TextBox
-                                Watermark="Введите адрес доставки"
+                                Watermark="Введите маршрут"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateDeliveryRequest.Route}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Дата"></TextBlock>
-                            <DatePicker SelectedDate=""></DatePicker>
+                            <DatePicker SelectedDate="{Binding UpdateDeliveryRequest}"></DatePicker>
                             <TextBlock
                                 Classes="p"
                                 Text="Транспорт"></TextBlock>
-                            <TextBox Watermark="Введите транспорт"></TextBox>
+                            <TextBox
+                                Watermark="Введите транспорт"
+                                Text="{Binding UpdateDeliveryRequest.Transport}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
-                                Command="{Binding SaveCommand}"></Button>
+                                Command="{Binding UpdateCommand}"></Button>
                         </StackPanel>
                     </Expander>
                     <Button
@@ -128,6 +138,9 @@
                                 Classes="p"
                                 Text="Водитель"></TextBlock>
                             <ComboBox
+                                ItemsSource="{Binding Drivers}"
+                                DisplayMemberBinding="{Binding FullName}"
+                                SelectedItem="{Binding SelectedDriver}"
                                 PlaceholderText="Выберите водителя"></ComboBox>
                             <Button
                                 Content="Сохранить"
@@ -145,6 +158,8 @@
                                 Classes="p"
                                 Text="Статус"></TextBlock>
                             <ComboBox
+                                ItemsSource="{Binding Statuses}"
+                                SelectedItem="{Binding SelectedStatus}"
                                 PlaceholderText="Выберите статус"></ComboBox>
                             <Button
                                 Content="Сохранить"

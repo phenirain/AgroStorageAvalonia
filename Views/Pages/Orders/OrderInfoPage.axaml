@@ -35,7 +35,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Client.CompanyName}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="1"
@@ -47,7 +47,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Client.ContactPerson}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="1"
@@ -59,7 +59,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Client.TelephoneNumber}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="1"
@@ -71,7 +71,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Client.Email}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="2"
@@ -83,7 +83,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Product.Name}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="2"
@@ -95,7 +95,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Product.Article}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="2"
@@ -107,7 +107,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Product.Price}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="2"
@@ -119,7 +119,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Product.Quantity}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="3"
@@ -131,7 +131,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Date}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="3"
@@ -143,7 +143,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.Status, Converter={StaticResource EnumMemberConverter}}"></TextBlock>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="3"
@@ -155,7 +155,7 @@
                     <TextBlock
                         Classes="p"
                         Foreground="Gray"
-                        Text=""></TextBlock>
+                        Text="{Binding Order.TotalPrice}"></TextBlock>
                 </StackPanel>
             </Grid>
             <Border Grid.Column="1">

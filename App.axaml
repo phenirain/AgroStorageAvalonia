@@ -2,13 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="desktop.App"
              xmlns:local="using:desktop"
+             xmlns:converters="clr-namespace:desktop.Views.Converters"
              RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+
+    <Application.Resources>
+        <converters:EnumMemberConverter x:Key="EnumMemberConverter"/>
+    </Application.Resources>
+
     <Application.Styles>
         <FluentTheme />
         <Style Selector="Border.border-default">

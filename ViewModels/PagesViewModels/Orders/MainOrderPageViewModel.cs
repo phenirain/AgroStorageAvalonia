@@ -42,6 +42,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     private CreateOrderRequest _createOrder = new CreateOrderRequest();
+    [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     [ObservableProperty] private UpdateOrderRequest _updateOrder = new UpdateOrderRequest();
 
     #endregion

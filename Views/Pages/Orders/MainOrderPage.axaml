@@ -33,16 +33,16 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Номер заказа"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Id}"></DataGridTextColumn>
                             <DataGridTextColumn
-                                Header="Статус Контактное лицо"
-                                Binding=""></DataGridTextColumn>
+                                Header="Контактное лицо"
+                                Binding="{Binding Client.ContactPerson}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Дата создания"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Date}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Статус заказа"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Status, Converter={StaticResource EnumMemberConverter}}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Итоговая сумма"
                                 Binding=""></DataGridTextColumn>
