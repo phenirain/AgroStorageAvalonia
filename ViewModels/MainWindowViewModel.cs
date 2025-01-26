@@ -2,8 +2,8 @@
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using desktop.ViewModels.Pages;
-using desktop.ViewModels.Pages.Orders;
+using desktop.Views.Pages;
+using desktop.Views.Pages.Orders;
 
 namespace desktop.ViewModels;
 

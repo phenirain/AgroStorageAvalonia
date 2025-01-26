@@ -13,8 +13,6 @@
 
     <Window.Styles>
         <Style Selector="Button.navigationBtn">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Background" Value="#444444"></Setter>
             <Setter Property="CornerRadius" Value="5"></Setter>
         </Style>
     </Window.Styles>

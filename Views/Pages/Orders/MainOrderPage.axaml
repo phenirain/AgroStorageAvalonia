@@ -1,0 +1,107 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="desktop.Views.Pages.Orders.MainOrderPage"
+             xmlns:vm="using:desktop.ViewModels.PagesViewModels.Orders"
+             x:DataType="vm:MainOrderPageViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="5"></Setter>
+        </Style>
+    </UserControl.Styles>
+
+
+    <Grid ColumnDefinitions="4*, 1*">
+        <StackPanel Grid.Column="0" Spacing="10">
+            <TextBlock
+                Classes="p" Text="Статус заказа"/>
+            <ComboBox
+                PlaceholderText="Выберите статус заказа"
+                />
+            <Border
+                Classes="border-default"
+                Padding="5">
+                <DataGrid>
+
+                </DataGrid>
+            </Border>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1"
+            VerticalScrollBarVisibility="Visible"
+            Height="700">
+            <StackPanel
+                Spacing="10">
+                <Expander
+                    Header="Создать заказ"
+                    Classes="border-default"
+                    Padding="5">
+                    <StackPanel
+                        Spacing="10">
+                        <TextBlock
+                            Classes="h1"
+                            Text="Создание заказа"></TextBlock>
+                        <TextBlock
+                            Classes="p"
+                            Text="Клиента"></TextBlock>
+                        <ComboBox
+                            PlaceholderText="Выберите клиента"></ComboBox>
+                        <TextBlock
+                            Classes="p"
+                            Text="Товар"></TextBlock>
+                        <ComboBox
+                            PlaceholderText="Выберите товар"></ComboBox>
+                        <TextBlock
+                            Classes="p"
+                            Text="Количество товара"></TextBlock>
+                        <TextBox Watermark="Введите количество товара"></TextBox>
+                        <Button
+                            Content="Сохранить"
+                            Command="{Binding SaveCommand}"></Button>
+                    </StackPanel>
+                </Expander>
+                <Expander
+                    Header="Редактировать заказ"
+                    Classes="border-default"
+                    Padding="5">
+                    <StackPanel
+                        Spacing="10">
+                        <TextBlock
+                            Classes="h1"
+                            Text="Создание заказа"></TextBlock>
+                        <TextBlock
+                            Classes="p"
+                            Text="Клиента"></TextBlock>
+                        <ComboBox
+                            PlaceholderText="Выберите клиента"></ComboBox>
+                        <TextBlock
+                            Classes="p"
+                            Text="Товар"></TextBlock>
+                        <ComboBox
+                            PlaceholderText="Выберите товар"></ComboBox>
+                        <TextBlock
+                            Classes="p"
+                            Text="Количество товара"></TextBlock>
+                        <TextBox Watermark="Введите количество товара"></TextBox>
+                        <Button
+                            Content="Сохранить"
+                            Command="{Binding UpdateCommand}"></Button>
+                    </StackPanel>
+                </Expander>
+
+                <Button
+                    Background="LightGray"
+                    Foreground="Black"
+                    Content="Удалить заказ"
+                    Command="{Binding DeleteCommand}"></Button>
+                <Button
+                    Background="LightGray"
+                    Foreground="Black"
+                    Content="Просмотреть детали заказа"
+                    Command="{Binding GoToMoreInfoCommand}"></Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

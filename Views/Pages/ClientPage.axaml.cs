@@ -1,13 +1,13 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using desktop.ViewModels.PagesViewModels;
 
-namespace desktop.ViewModels.Pages;
+namespace desktop.Views.Pages;
 
 public partial class ClientPage : UserControl
 {
     public ClientPage()
     {
         InitializeComponent();
+        DataContext = new ClientPageViewModel();
     }
 }
