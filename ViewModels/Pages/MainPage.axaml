@@ -1,0 +1,159 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="desktop.ViewModels.Pages.MainPage">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+        </Style>
+        <Style Selector="TextBlock.p">
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        <Style Selector="Border.block">
+            <Setter Property="Height" Value="350"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+        </Style>
+        <Style Selector="Border.mini">
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="CornerRadius" Value="5"></Setter>
+        </Style>
+        <Style Selector="Border">
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+
+            <StackPanel Grid.Row="1" Spacing="10">
+
+                <TextBlock Classes="h1"
+                    Text="Состояние склада"></TextBlock>
+                <Border Classes="block">
+                    <DataGrid
+                        ItemsSource=""
+                        >
+                        <DataGrid.Columns>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+
+                <TextBlock
+                    Classes="h1"
+                    Text="Заказы"></TextBlock>
+                <TextBlock
+                    Classes="p"
+                    Text="Статус заказа"/>
+                <ComboBox PlaceholderText="Выберите статус"></ComboBox>
+                <Border Classes="block">
+                    <DataGrid
+                        ItemsSource=""
+                    ></DataGrid>
+                </Border>
+
+                <TextBlock
+                    Classes="h1"
+                    Text="Заказы"></TextBlock>
+                <Border Classes="block" Padding="10">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            Text="Запланированные доставки"
+                            Classes="h1"
+                            ></TextBlock>
+                        <ListBox
+                            Background="Transparent"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                            ItemsSource="">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Classes="mini">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock
+                                                Text="Доставка №"
+                                                FontSize="14"/>
+                                            <TextBlock
+                                                Text="Адрес принятия товара:"
+                                                Classes="p"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock
+                            Classes="h2"
+                            Text="Активные доставки"/>
+                        <ListBox
+                            Background="Transparent"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                            ItemsSource="">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Classes="mini">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock
+                                                Text="Доставка №"
+                                                FontSize="14"/>
+                                            <TextBlock
+                                                Text="Адрес принятия товара:"
+                                                Classes="p"/>
+                                            <TextBlock
+                                                Text="Дата начала доставки: "
+                                                Classes="p"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock
+                            Classes="h1"
+                            Text="Выполненные доставки"/>
+                        <ListBox
+                            Background="Transparent"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                            ItemsSource="">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Classes="mini">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock
+                                                Text="Доставка №"
+                                                FontSize="14"/>
+                                            <TextBlock
+                                                Text="Адрес принятия товара:"
+                                                Classes="p"/>
+                                            <TextBlock
+                                                Text="Дата начала доставки: "
+                                                Classes="p"/>
+                                            <TextBlock
+                                                Text="Адрес доставки товара:"
+                                                Classes="p"/>
+                                            <TextBlock
+                                                Text="Дата конца доставки: "
+                                                Classes="p"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+</UserControl>
