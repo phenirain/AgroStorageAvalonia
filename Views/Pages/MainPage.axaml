@@ -24,10 +24,20 @@
                     Text="Состояние склада"></TextBlock>
                 <Border Classes="block">
                     <DataGrid
-                        ItemsSource=""
-                        >
+                        ItemsSource="">
                         <DataGrid.Columns>
-
+                            <DataGridTextColumn
+                                Header="Адрес склада"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Номер товара"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Артикул товара"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Количество товара"
+                                Binding=""></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -42,7 +52,31 @@
                 <Border Classes="block">
                     <DataGrid
                         ItemsSource=""
-                    ></DataGrid>
+                    >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Название компании"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Контактное лицо"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Телефон"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Статус выполнения"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Сроки доставки"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Адрес доставки"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Итоговая сумма"
+                                Binding=""></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Border>
 
                 <TextBlock

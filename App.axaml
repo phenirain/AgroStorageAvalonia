@@ -34,5 +34,24 @@
             <Setter Property="Background" Value="#444444"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+        <Style Selector="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"></Setter>
+            <Setter Property="IsReadOnly" Value="True"></Setter>
+            <Setter Property="GridLinesVisibility" Value="All"></Setter>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"></Setter>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+        </Style>
+        <Style Selector="DataGridTextColumn">
+            <Setter Property="Width" Value="*"></Setter>
+        </Style>
+        <Style Selector="DataGridCell">
+            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
     </Application.Styles>
 </Application>
