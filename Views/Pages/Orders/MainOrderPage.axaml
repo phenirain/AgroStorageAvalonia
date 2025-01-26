@@ -24,8 +24,25 @@
             <Border
                 Classes="border-default"
                 Padding="5">
-                <DataGrid>
-
+                <DataGrid
+                    ItemsSource="">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Номер заказа"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Статус Контактное лицо"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Дата создания"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Статус заказа"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Итоговая сумма"
+                            Binding=""></DataGridTextColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </Border>
         </StackPanel>
