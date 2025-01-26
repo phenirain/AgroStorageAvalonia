@@ -169,10 +169,13 @@
                         Classes="p"
                         Text="Статус"></TextBlock>
                     <ComboBox
+                        ItemsSource="{Binding  OrderStatuses}"
+                        SelectedItem="{Binding Status}"
                         PlaceholderText="Выберите статус"></ComboBox>
                     <Button
                         Content="Сохранить"
-                        HorizontalAlignment="Stretch"></Button>
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding UpdateStatusCommand}"></Button>
                 </StackPanel>
             </Border>
         </Grid>

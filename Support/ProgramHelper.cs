@@ -22,4 +22,23 @@ public class ProgramHelper
 
         return memberValues;
     }
+
+    public static TEnum? GetEnumValueFromEnumMember<TEnum>(string value) where TEnum : struct
+    {
+        var enumType = typeof(TEnum);
+
+        foreach (var field in enumType.GetFields())
+        {
+            var enumMember = field.GetCustomAttributes(typeof(EnumMemberAttribute), false)
+                .Cast<EnumMemberAttribute>()
+                .FirstOrDefault();
+
+            if (enumMember != null && enumMember.Value == value)
+            {
+                return (TEnum?)field.GetValue(null);
+            }
+        }
+
+        return null;
+    }
 }
