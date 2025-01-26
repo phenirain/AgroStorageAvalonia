@@ -6,7 +6,7 @@
              x:Class="desktop.Views.Pages.DeliveryPage"
              xmlns:vm="using:desktop.ViewModels.PagesViewModels"
              x:DataType="vm:DeliveryPageViewModel">
-    <Grid ColumnDefinitions="4*, 1*">
+    <Grid ColumnDefinitions="4*, 1.5*">
         <Border
             Classes="border-default"
             Padding="5">
@@ -94,7 +94,7 @@
                         <TextBlock
                             Classes="p"
                             Text="Дата"></TextBlock>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate=""></DatePicker>
                         <TextBlock
                             Classes="p"
                             Text="Транспорт"></TextBlock>

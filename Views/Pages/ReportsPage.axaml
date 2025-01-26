@@ -7,22 +7,27 @@
              xmlns:vm="using:desktop.ViewModels.PagesViewModels"
              x:DataType="vm:ReportsPageViewModel">
     <Border
+        BorderBrush="LightGray"
+        BorderThickness="1"
+        CornerRadius="15"
         Padding="15"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Width="300"
         Height="200">
         <StackPanel>
             <TextBlock
                 Classes="h1"
                 Text="Создание отчётов"></TextBlock>
             <Button
+                Classes="form-btn"
                 Content="Сформировать отчёт по остаткам товаров на складе"
                 Command="{Binding CreateStorageRemainsReportCommand}"></Button>
             <Button
+                Classes="form-btn"
                 Content="Сформировать отчёт по выполненным заказам"
                 Command="{Binding CreateCompletedOrdersReportCommand}"></Button>
             <Button
+                Classes="form-btn"
                 Content="Сформировать отчёт по доходам от продаж "
                 Command="{Binding CreateRevenueReportCommand}"></Button>
         </StackPanel>
