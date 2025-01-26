@@ -1,150 +1,159 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.DeliveryPage"
-             xmlns:vm="using:desktop.ViewModels.PagesViewModels"
-             x:DataType="vm:DeliveryPageViewModel">
-    <Grid ColumnDefinitions="4*, 1.5*">
-        <Border
-            Classes="border-default"
-            Padding="5">
-            <DataGrid
-                ItemsSource=""
-                SelectedItem="">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Header="Номер заказа"
-                        Binding=""></DataGridTextColumn>
-                    <DataGridTextColumn
-                        Header="Клиент"
-                        Binding=""></DataGridTextColumn>
-                    <DataGridTextColumn
-                        Header="Дата заказа"
-                        Binding=""></DataGridTextColumn>
-                    <DataGridTextColumn
-                        Header="Статус доставки"
-                        Binding=""></DataGridTextColumn>
-                    <DataGridTextColumn
-                        Header="Маршрут"
-                        Binding=""></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
-        <ScrollViewer Grid.Column="1"
-            VerticalScrollBarVisibility="Visible"
-            Height="700">
-            <StackPanel
-                Spacing="10">
-                <Expander
-                    Header="Создать доставку">
-                    <StackPanel
-                        Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Создание доставки"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Заказ"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите заказ"
-                            ItemsSource=""
-                            SelectedItem=""></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Адрес доставки"></TextBlock>
-                        <TextBox
-                            Watermark="Введите адрес доставки"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Дата"></TextBlock>
-                        <DatePicker></DatePicker>
-                        <TextBlock
-                            Classes="p"
-                            Text="Транспорт"></TextBlock>
-                        <TextBox Watermark="Введите транспорт"></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding SaveCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-                <Expander
-                    Header="Редактировать доставку">
-                    <StackPanel
-                         Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Создание доставки"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Заказ"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите заказ"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Адрес доставки"></TextBlock>
-                        <TextBox
-                            Watermark="Введите адрес доставки"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Дата"></TextBlock>
-                        <DatePicker SelectedDate=""></DatePicker>
-                        <TextBlock
-                            Classes="p"
-                            Text="Транспорт"></TextBlock>
-                        <TextBox Watermark="Введите транспорт"></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding SaveCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-                <Button
-                    Padding="15"
-                    Content="Удалить доставку"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding DeleteCommand}"></Button>
-                <Expander
-                    Header="Назначить водителя">
-                    <StackPanel Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Назначение водителя"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Водитель"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите водителя"></ComboBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding DriverUpdateCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-                <Expander
-                    Header="Обновить статус">
-                    <StackPanel Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Обновить статус"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Статус"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите статус"></ComboBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding StatusUpdateCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
-        </ScrollViewer>
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="desktop.Views.Pages.DeliveryPage"
+                xmlns:vm="using:desktop.ViewModels.PagesViewModels"
+                x:DataType="vm:DeliveryPageViewModel">
+    <Grid RowDefinitions="60, *" Margin="10">
+        <Button
+            Grid.Row="0"
+            Content="Назад"
+            CornerRadius="5"
+            Width="60"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"></Button>
+        <Grid Grid.Row="1" ColumnDefinitions="4*, 1.5*">
+            <Border
+                Classes="border-default"
+                Padding="5">
+                <DataGrid
+                    ItemsSource=""
+                    SelectedItem="">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Номер заказа"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Клиент"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Дата заказа"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Статус доставки"
+                            Binding=""></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Маршрут"
+                            Binding=""></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+            <ScrollViewer Grid.Column="1"
+                VerticalScrollBarVisibility="Visible"
+                Height="700">
+                <StackPanel
+                    Spacing="10">
+                    <Expander
+                        Header="Создать доставку">
+                        <StackPanel
+                            Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Создание доставки"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Заказ"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите заказ"
+                                ItemsSource=""
+                                SelectedItem=""></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Адрес доставки"></TextBlock>
+                            <TextBox
+                                Watermark="Введите адрес доставки"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Дата"></TextBlock>
+                            <DatePicker></DatePicker>
+                            <TextBlock
+                                Classes="p"
+                                Text="Транспорт"></TextBlock>
+                            <TextBox Watermark="Введите транспорт"></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding SaveCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                    <Expander
+                        Header="Редактировать доставку">
+                        <StackPanel
+                             Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Создание доставки"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Заказ"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите заказ"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Адрес доставки"></TextBlock>
+                            <TextBox
+                                Watermark="Введите адрес доставки"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Дата"></TextBlock>
+                            <DatePicker SelectedDate=""></DatePicker>
+                            <TextBlock
+                                Classes="p"
+                                Text="Транспорт"></TextBlock>
+                            <TextBox Watermark="Введите транспорт"></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding SaveCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                    <Button
+                        Padding="15"
+                        Content="Удалить доставку"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding DeleteCommand}"></Button>
+                    <Expander
+                        Header="Назначить водителя">
+                        <StackPanel Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Назначение водителя"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Водитель"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите водителя"></ComboBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding DriverUpdateCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                    <Expander
+                        Header="Обновить статус">
+                        <StackPanel Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Обновить статус"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Статус"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите статус"></ComboBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding StatusUpdateCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
-</UserControl>
+</ContentControl>

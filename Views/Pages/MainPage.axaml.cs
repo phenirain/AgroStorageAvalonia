@@ -3,7 +3,7 @@ using desktop.ViewModels.PagesViewModels;
 
 namespace desktop.Views.Pages;
 
-public partial class MainPage : UserControl
+public partial class MainPage : ContentControl
 {
     public MainPage()
     {

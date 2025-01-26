@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+<ContentControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,118 +6,144 @@
              x:Class="desktop.Views.Pages.Orders.MainOrderPage"
              xmlns:vm="using:desktop.ViewModels.PagesViewModels.Orders"
              x:DataType="vm:MainOrderPageViewModel">
-
-    <Grid ColumnDefinitions="4*, 1.5*">
-        <StackPanel Grid.Column="0" Spacing="10">
-            <TextBlock
-                Classes="p" Text="Статус заказа"/>
-            <ComboBox
-                HorizontalAlignment="Left"
-                PlaceholderText="Выберите статус заказа"
-                />
-            <Border
-                Classes="border-default"
-                Padding="5">
-                <DataGrid
-                    ItemsSource=""
-                    SelectedItem="">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Header="Номер заказа"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Статус Контактное лицо"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Дата создания"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Статус заказа"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Итоговая сумма"
-                            Binding=""></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
-        </StackPanel>
-        <ScrollViewer Grid.Column="1"
-            VerticalScrollBarVisibility="Visible"
-            Height="700">
-            <StackPanel
-                Spacing="10">
-                <Expander
-                    Header="Создать заказ">
-                    <StackPanel
-                        Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Создание заказа"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Клиент"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите клиента"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Товар"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите товар"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Количество товара"></TextBlock>
-                        <TextBox
-                            Watermark="Введите количество товара"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding SaveCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-                <Expander
-                    Header="Редактировать заказ">
-                    <StackPanel
-                        Spacing="10">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Создание заказа"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Клиента"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите клиента"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Товар"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите товар"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Количество товара"></TextBlock>
-                        <TextBox
-                            Watermark="Введите количество товара"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding UpdateCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-
-                <Button
-                    Padding="15"
-                    Content="Удалить заказ"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding DeleteCommand}"></Button>
-                <Button
-                    Padding="15"
-                    Content="Просмотреть детали заказа"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding GoToMoreInfoCommand}"></Button>
+    <Grid RowDefinitions="60, *" Margin="10">
+        <Button
+            Grid.Row="0"
+            Content="Назад"
+            CornerRadius="5"
+            Width="60"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"></Button>
+        <Grid Grid.Row="1" ColumnDefinitions="4*, 1.5*">
+            <StackPanel Grid.Column="0" Spacing="10">
+                <TextBlock
+                    Classes="p" Text="Статус заказа"/>
+                <ComboBox
+                    HorizontalAlignment="Left"
+                    PlaceholderText="Выберите статус заказа"
+                    ItemsSource="{Binding OrderStatuses}"
+                    SelectedItem="{Binding SelectedFilterStatus}"
+                    />
+                <Border
+                    Classes="border-default"
+                    Padding="5">
+                    <DataGrid
+                        ItemsSource="{Binding Orders}"
+                        SelectedItem="{Binding SelectedOrder}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Номер заказа"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Статус Контактное лицо"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Дата создания"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Статус заказа"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Итоговая сумма"
+                                Binding=""></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
             </StackPanel>
-        </ScrollViewer>
+            <ScrollViewer Grid.Column="1"
+                VerticalScrollBarVisibility="Visible"
+                Height="700">
+                <StackPanel
+                    Spacing="10">
+                    <Expander
+                        Header="Создать заказ">
+                        <StackPanel
+                            Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Создание заказа"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Клиент"></TextBlock>
+                            <ComboBox
+                                ItemsSource="{Binding Clients}"
+                                DisplayMemberBinding="{Binding CompanyName}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding CreateOrder.ClientId}"
+                                PlaceholderText="Выберите клиента"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Товар"></TextBlock>
+                            <ComboBox
+                                ItemsSource="{Binding Products}"
+                                DisplayMemberBinding="{Binding Article}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding CreateOrder.ProductId}"
+                                PlaceholderText="Выберите товар"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Количество товара"></TextBlock>
+                            <TextBox
+                                Watermark="Введите количество товара"
+                                HorizontalAlignment="Stretch"
+                                Text="{Binding CreateOrder.Quantity}"></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding SaveCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                    <Expander
+                        Header="Редактировать заказ">
+                        <StackPanel
+                            Spacing="10">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Создание заказа"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Клиента"></TextBlock>
+                            <ComboBox
+                                ItemsSource="{Binding Clients}"
+                                DisplayMemberBinding="{Binding CompanyName}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding UpdateOrder.ClientId}"
+                                PlaceholderText="Выберите клиента"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Товар"></TextBlock>
+                            <ComboBox
+                                ItemsSource="{Binding Products}"
+                                DisplayMemberBinding="{Binding Article}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding UpdateOrder.ProductId}"
+                                PlaceholderText="Выберите товар"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Количество товара"></TextBlock>
+                            <TextBox
+                                Watermark="Введите количество товара"
+                                HorizontalAlignment="Stretch"
+                                Text="{Binding UpdateOrder.Quantity}"></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding UpdateCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+
+                    <Button
+                        Padding="15"
+                        Content="Удалить заказ"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding DeleteCommand}"></Button>
+                    <Button
+                        Padding="15"
+                        Content="Просмотреть детали заказа"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding GoToMoreInfoCommand}"></Button>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
-</UserControl>
+</ContentControl>

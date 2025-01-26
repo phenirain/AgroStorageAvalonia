@@ -1,34 +1,44 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.ReportsPage"
-             xmlns:vm="using:desktop.ViewModels.PagesViewModels"
-             x:DataType="vm:ReportsPageViewModel">
-    <Border
-        BorderBrush="LightGray"
-        BorderThickness="1"
-        CornerRadius="15"
-        Padding="15"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
-        <StackPanel>
-            <TextBlock
-                Classes="h1"
-                Text="Создание отчётов"></TextBlock>
-            <Button
-                Classes="form-btn"
-                Content="Сформировать отчёт по остаткам товаров на складе"
-                Command="{Binding CreateStorageRemainsReportCommand}"></Button>
-            <Button
-                Classes="form-btn"
-                Content="Сформировать отчёт по выполненным заказам"
-                Command="{Binding CreateCompletedOrdersReportCommand}"></Button>
-            <Button
-                Classes="form-btn"
-                Content="Сформировать отчёт по доходам от продаж "
-                Command="{Binding CreateRevenueReportCommand}"></Button>
-        </StackPanel>
-    </Border>
-</UserControl>
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="desktop.Views.Pages.ReportsPage"
+                xmlns:vm="using:desktop.ViewModels.PagesViewModels"
+                x:DataType="vm:ReportsPageViewModel">
+    <Grid RowDefinitions="60, *" Margin="10">
+        <Button
+            Grid.Row="0"
+            Content="Назад"
+            CornerRadius="5"
+            Width="60"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"></Button>
+        <Border
+            Grid.Row="1"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            CornerRadius="15"
+            Padding="15"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock
+                    Classes="h1"
+                    Text="Создание отчётов"></TextBlock>
+                <Button
+                    Classes="form-btn"
+                    Content="Сформировать отчёт по остаткам товаров на складе"
+                    Command="{Binding CreateStorageRemainsReportCommand}"></Button>
+                <Button
+                    Classes="form-btn"
+                    Content="Сформировать отчёт по выполненным заказам"
+                    Command="{Binding CreateCompletedOrdersReportCommand}"></Button>
+                <Button
+                    Classes="form-btn"
+                    Content="Сформировать отчёт по доходам от продаж "
+                    Command="{Binding CreateRevenueReportCommand}"></Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</ContentControl>

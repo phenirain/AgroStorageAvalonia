@@ -9,7 +9,7 @@ namespace desktop.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    [ObservableProperty] private UserControl _currentPage;
+    [ObservableProperty] private ContentControl _currentPage;
 
     private readonly string _role;
 
@@ -24,7 +24,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanGoToStorage))]
     private async Task GoToStorage()
     {
-        CurrentPage = new StoragePage();
+        CurrentPage.Content = new StoragePage(CurrentPage);
     }
 
     private bool CanGoToOrders() => _role is "Manager" or "SalesManager";
@@ -32,14 +32,14 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanGoToOrders))]
     private async Task GoToOrders()
     {
-        CurrentPage = new MainOrderPage();
+        CurrentPage.Content = new MainOrderPage(CurrentPage);
     }
 
     private bool CanGoToDeliveries() => _role is "Manager" or "Logician";
     [RelayCommand(CanExecute = nameof(CanGoToDeliveries))]
     private async Task GoToDeliveries()
     {
-        CurrentPage = new DeliveryPage();
+        CurrentPage.Content = new DeliveryPage(CurrentPage);
     }
 
     private bool CanGoToReports() => _role == "Manager";
@@ -47,7 +47,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanGoToReports))]
     private async Task GoToReports()
     {
-        CurrentPage = new ReportsPage();
+        CurrentPage.Content = new ReportsPage(CurrentPage);
     }
 
     private bool CanGoToClients() => _role is "Manager" or "SalesManager";
@@ -55,6 +55,6 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanGoToClients))]
     private async Task GoToClients()
     {
-        CurrentPage = new ClientPage();
+        CurrentPage.Content = new ClientPage(CurrentPage);
     }
 }

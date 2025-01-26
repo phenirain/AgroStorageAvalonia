@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+<ContentControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -12,7 +12,7 @@
             Grid.Row="0"
             Content="Назад"
             CornerRadius="5"
-            Width="40"
+            Width="60"
             HorizontalAlignment="Left"
             Command="{Binding BackCommand}"></Button>
         <Grid Grid.Row="1" ColumnDefinitions="4*, 1*">
@@ -177,4 +177,4 @@
             </Border>
         </Grid>
     </Grid>
-</UserControl>
+</ContentControl>

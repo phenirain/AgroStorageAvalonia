@@ -1,135 +1,144 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.StoragePage"
-             xmlns:vm="using:desktop.ViewModels.PagesViewModels"
-             x:DataType="vm:StoragePageViewModel">
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="desktop.Views.Pages.StoragePage"
+                xmlns:vm="using:desktop.ViewModels.PagesViewModels"
+                x:DataType="vm:StoragePageViewModel">
 
-    <Grid ColumnDefinitions="4*, 1.5*">
-        <StackPanel Grid.Column="0" Spacing="10">
-            <TextBlock
-                Classes="p" Text="Категория"/>
-            <ComboBox
-                HorizontalAlignment="Left"
-                PlaceholderText="Выберите категорию"/>
-            <Border
-                Classes="border-default"
-                Padding="5">
-                <DataGrid
-                    ItemsSource=""
-                    SelectedItem="">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Header="Наименование товара"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Категория"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Артикул"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Количество на складе"
-                            Binding=""></DataGridTextColumn>
-                        <DataGridTextColumn
-                            Header="Цена"
-                            Binding=""></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
-        </StackPanel>
-        <ScrollViewer Grid.Column="1"
-            VerticalScrollBarVisibility="Visible"
-            Height="700">
-            <StackPanel
-                Spacing="10">
-                <Expander
-                    Header="Добавить товар">
-                    <StackPanel
-                        Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Создание товара"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Категория"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите категорию"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Название товара"></TextBlock>
-                        <TextBox
-                            Watermark="Введите название товара"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Количество на складе"></TextBlock>
-                        <TextBox
-                            Watermark="Введите количество"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Цена"></TextBlock>
-                        <TextBox
-                            Watermark="Введите цену"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding SaveCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-                <Expander
-                    Header="Редактировать товар">
-                    <StackPanel
-                        Spacing="10" Margin="20">
-                        <TextBlock
-                            Classes="h1"
-                            Text="Изменение товара"></TextBlock>
-                        <TextBlock
-                            Classes="p"
-                            Text="Категория"></TextBlock>
-                        <ComboBox
-                            PlaceholderText="Выберите категорию"></ComboBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Название товара"></TextBlock>
-                        <TextBox
-                            Watermark="Введите название товара"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Количество на складе"></TextBlock>
-                        <TextBox
-                            Watermark="Введите количество"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <TextBlock
-                            Classes="p"
-                            Text="Цена"></TextBlock>
-                        <TextBox
-                            Watermark="Введите цену"
-                            HorizontalAlignment="Stretch"
-                            Text=""></TextBox>
-                        <Button
-                            Content="Сохранить"
-                            Classes="form-btn"
-                            Command="{Binding UpdateCommand}"></Button>
-                    </StackPanel>
-                </Expander>
-
-                <Button
-                    Padding="15"
-                    Content="Удалить товар"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding DeleteCommand}"></Button>
+    <Grid RowDefinitions="60, *" Margin="10">
+        <Button
+            Grid.Row="0"
+            Content="Назад"
+            CornerRadius="5"
+            Width="60"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"></Button>
+        <Grid Grid.Row="1" ColumnDefinitions="4*, 1.5*">
+            <StackPanel Grid.Column="0" Spacing="10">
+                <TextBlock
+                    Classes="p" Text="Категория"/>
+                <ComboBox
+                    HorizontalAlignment="Left"
+                    PlaceholderText="Выберите категорию"/>
+                <Border
+                    Classes="border-default"
+                    Padding="5">
+                    <DataGrid
+                        ItemsSource=""
+                        SelectedItem="">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Наименование товара"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Категория"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Артикул"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Количество на складе"
+                                Binding=""></DataGridTextColumn>
+                            <DataGridTextColumn
+                                Header="Цена"
+                                Binding=""></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
             </StackPanel>
-        </ScrollViewer>
+            <ScrollViewer Grid.Column="1"
+                VerticalScrollBarVisibility="Visible"
+                Height="700">
+                <StackPanel
+                    Spacing="10">
+                    <Expander
+                        Header="Добавить товар">
+                        <StackPanel
+                            Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Создание товара"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Категория"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите категорию"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Название товара"></TextBlock>
+                            <TextBox
+                                Watermark="Введите название товара"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Количество на складе"></TextBlock>
+                            <TextBox
+                                Watermark="Введите количество"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Цена"></TextBlock>
+                            <TextBox
+                                Watermark="Введите цену"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding SaveCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+                    <Expander
+                        Header="Редактировать товар">
+                        <StackPanel
+                            Spacing="10" Margin="20">
+                            <TextBlock
+                                Classes="h1"
+                                Text="Изменение товара"></TextBlock>
+                            <TextBlock
+                                Classes="p"
+                                Text="Категория"></TextBlock>
+                            <ComboBox
+                                PlaceholderText="Выберите категорию"></ComboBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Название товара"></TextBlock>
+                            <TextBox
+                                Watermark="Введите название товара"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Количество на складе"></TextBlock>
+                            <TextBox
+                                Watermark="Введите количество"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Цена"></TextBlock>
+                            <TextBox
+                                Watermark="Введите цену"
+                                HorizontalAlignment="Stretch"
+                                Text=""></TextBox>
+                            <Button
+                                Content="Сохранить"
+                                Classes="form-btn"
+                                Command="{Binding UpdateCommand}"></Button>
+                        </StackPanel>
+                    </Expander>
+
+                    <Button
+                        Padding="15"
+                        Content="Удалить товар"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding DeleteCommand}"></Button>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
-</UserControl>
+</ContentControl>

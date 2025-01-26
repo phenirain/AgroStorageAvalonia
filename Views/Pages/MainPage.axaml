@@ -1,11 +1,11 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.MainPage">
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="desktop.Views.Pages.MainPage">
 
-    <UserControl.Styles>
+    <ContentControl.Styles>
         <Style Selector="Border.block">
             <Setter Property="Height" Value="350"></Setter>
             <Setter Property="CornerRadius" Value="10"></Setter>
@@ -14,7 +14,7 @@
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="CornerRadius" Value="5"></Setter>
         </Style>
-    </UserControl.Styles>
+    </ContentControl.Styles>
 
     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
 
@@ -177,4 +177,4 @@
 
             </StackPanel>
         </ScrollViewer>
-</UserControl>
+</ContentControl>

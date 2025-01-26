@@ -3,11 +3,11 @@ using desktop.ViewModels.PagesViewModels;
 
 namespace desktop.Views.Pages;
 
-public partial class DeliveryPage : UserControl
+public partial class DeliveryPage : ContentControl
 {
-    public DeliveryPage()
+    public DeliveryPage(ContentControl currentPage)
     {
         InitializeComponent();
-        DataContext = new DeliveryPageViewModel();
+        DataContext = new DeliveryPageViewModel(currentPage);
     }
 }

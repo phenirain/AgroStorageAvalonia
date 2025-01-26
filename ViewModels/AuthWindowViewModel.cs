@@ -63,18 +63,6 @@ public partial class AuthWindowViewModel: ViewModelBase
                 await messageBox.ShowAsync();
             }
         }
-        catch (RequestException ex)
-        {
-            var messageBox = MessageBoxManager.GetMessageBoxStandard(
-                new MessageBoxStandardParams
-                {
-                    ButtonDefinitions = ButtonEnum.Ok,
-                    ContentTitle = "Error",
-                    ContentMessage = ex.Message,
-                    Icon = Icon.Question
-                });
-            await messageBox.ShowAsync();
-        }
         catch (Exception ex)
         {
             var messageBox = MessageBoxManager.GetMessageBoxStandard(

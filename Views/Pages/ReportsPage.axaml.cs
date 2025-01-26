@@ -3,11 +3,11 @@ using desktop.ViewModels.PagesViewModels;
 
 namespace desktop.Views.Pages;
 
-public partial class ReportsPage : UserControl
+public partial class ReportsPage : ContentControl
 {
-    public ReportsPage()
+    public ReportsPage(ContentControl currentPage)
     {
         InitializeComponent();
-        DataContext = new ReportsPageViewModel();
+        DataContext = new ReportsPageViewModel(currentPage);
     }
 }

@@ -3,11 +3,11 @@ using desktop.ViewModels.PagesViewModels;
 
 namespace desktop.Views.Pages;
 
-public partial class StoragePage : UserControl
+public partial class StoragePage : ContentControl
 {
-    public StoragePage()
+    public StoragePage(ContentControl currentPage)
     {
         InitializeComponent();
-        DataContext = new StoragePageViewModel();
+        DataContext = new StoragePageViewModel(currentPage);
     }
 }

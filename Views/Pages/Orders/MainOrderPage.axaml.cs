@@ -3,11 +3,11 @@ using desktop.ViewModels.PagesViewModels.Orders;
 
 namespace desktop.Views.Pages.Orders;
 
-public partial class MainOrderPage : UserControl
+public partial class MainOrderPage : ContentControl
 {
-    public MainOrderPage()
+    public MainOrderPage(ContentControl currentPage)
     {
         InitializeComponent();
-        DataContext = new MainOrderPageViewModel();
+        DataContext = new MainOrderPageViewModel(currentPage);
     }
 }
