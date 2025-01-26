@@ -3,6 +3,178 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.Orders.OrderInfoPage">
-    Welcome to Avalonia!
+             x:Class="desktop.Views.Pages.Orders.OrderInfoPage"
+             xmlns:vm="using:desktop.ViewModels.PagesViewModels.Orders"
+             x:DataType="vm:OrderInfoPageViewModel"
+             >
+    <Grid RowDefinitions="60, *" Margin="10">
+        <Button
+            Grid.Row="0"
+            Content="Назад"
+            CornerRadius="5"
+            Width="40"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"></Button>
+        <Grid Grid.Row="1" ColumnDefinitions="4*, 1*">
+            <Grid
+                Grid.Column="0"
+                RowDefinitions="50, 100, 100, 100"
+                ColumnDefinitions="1*, 1*, 1*, 1*">
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Classes="h1"
+                    Text="Подробная информация"></TextBlock>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Компания заказчик"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Контактное лицо"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Телефон"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Почта"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Название товара"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Артикул"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Цена товара"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Количество товара"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Дата создания"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Статус заказа"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Общая сумма заказа"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Foreground="Gray"
+                        Text=""></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Border Grid.Column="1">
+                <StackPanel
+                    Spacing="10">
+                    <TextBlock
+                        Classes="h1"
+                        Text="Обновление статуса заказа"
+                        TextWrapping="Wrap"></TextBlock>
+                    <TextBlock
+                        Classes="p"
+                        Text="Статус"></TextBlock>
+                    <ComboBox
+                        PlaceholderText="Выберите статус"></ComboBox>
+                    <Button
+                        Content="Сохранить"
+                        HorizontalAlignment="Stretch"></Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </UserControl>
