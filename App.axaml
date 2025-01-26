@@ -29,6 +29,7 @@
         </Style>
         <Style Selector="TextBox">
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="Foreground" Value="LightGray"></Setter>
         </Style>
         <Style Selector="DatePicker">
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
@@ -44,6 +45,7 @@
         <Style Selector="Button">
             <Setter Property="Background" Value="#444444"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="CornerRadius" Value="5"></Setter>
         </Style>
         <Style Selector="Button.form-btn">
             <Setter Property="Margin" Value="0, 10"></Setter>
