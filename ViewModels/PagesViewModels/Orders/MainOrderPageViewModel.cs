@@ -38,7 +38,9 @@ public partial class MainOrderPageViewModel: ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Order> _orders;
     [ObservableProperty] private Order? _selectedOrder;
-    [ObservableProperty] private CreateOrderRequest _createOrder = new CreateOrderRequest();
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
+    private CreateOrderRequest _createOrder = new CreateOrderRequest();
     [ObservableProperty] private UpdateOrderRequest _updateOrder = new UpdateOrderRequest();
 
     #endregion
@@ -48,9 +50,9 @@ public partial class MainOrderPageViewModel: ViewModelBase
     public MainOrderPageViewModel(ContentControl currentPage)
     {
         OrderStatuses = ProgramHelper.GetEnumMemberValues<OrderStatus>();
-        Task.Run(() => LoadOrders());
-        Task.Run(() => LoadClients());
-        Task.Run(() => LoadProducts());
+        // Task.Run(() => LoadOrders());
+        // Task.Run(() => LoadClients());
+        // Task.Run(() => LoadProducts());œ\
     }
 
     #region Loading Data
@@ -71,6 +73,18 @@ public partial class MainOrderPageViewModel: ViewModelBase
     }
 
     #endregion
+
+    partial void OnSelectedFilterStatusChanged(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            _ = LoadOrders();
+            return;
+        }
+        var enumValue = ProgramHelper.GetEnumValueFromEnumMember<OrderStatus>(value);
+        if (enumValue is not null)
+            Orders = new ObservableCollection<Order>(Orders.Where(o => o.Status == enumValue));
+    }
 
     partial void OnSelectedOrderChanged(Order? value)
     {
