@@ -62,7 +62,7 @@
                             Text="Создание заказа"></TextBlock>
                         <TextBlock
                             Classes="p"
-                            Text="Клиента"></TextBlock>
+                            Text="Клиент"></TextBlock>
                         <ComboBox
                             PlaceholderText="Выберите клиента"></ComboBox>
                         <TextBlock
@@ -73,7 +73,10 @@
                         <TextBlock
                             Classes="p"
                             Text="Количество товара"></TextBlock>
-                        <TextBox Watermark="Введите количество товара"></TextBox>
+                        <TextBox
+                            Watermark="Введите количество товара"
+                            HorizontalAlignment="Stretch"
+                            Text=""></TextBox>
                         <Button
                             Content="Сохранить"
                             Classes="form-btn"
@@ -100,7 +103,10 @@
                         <TextBlock
                             Classes="p"
                             Text="Количество товара"></TextBlock>
-                        <TextBox Watermark="Введите количество товара"></TextBox>
+                        <TextBox
+                            Watermark="Введите количество товара"
+                            HorizontalAlignment="Stretch"
+                            Text=""></TextBox>
                         <Button
                             Content="Сохранить"
                             Classes="form-btn"
