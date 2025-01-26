@@ -19,13 +19,15 @@
             <TextBlock
                 Classes="p" Text="Статус заказа"/>
             <ComboBox
+                HorizontalAlignment="Left"
                 PlaceholderText="Выберите статус заказа"
                 />
             <Border
                 Classes="border-default"
                 Padding="5">
                 <DataGrid
-                    ItemsSource="">
+                    ItemsSource=""
+                    SelectedItem="">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Номер заказа"
@@ -54,7 +56,7 @@
                 <Expander
                     Header="Создать заказ">
                     <StackPanel
-                        Spacing="10">
+                        Spacing="10" Margin="20">
                         <TextBlock
                             Classes="h1"
                             Text="Создание заказа"></TextBlock>
@@ -74,7 +76,7 @@
                         <TextBox Watermark="Введите количество товара"></TextBox>
                         <Button
                             Content="Сохранить"
-                            HorizontalAlignment="Stretch"
+                            Classes="form-btn"
                             Command="{Binding SaveCommand}"></Button>
                     </StackPanel>
                 </Expander>
@@ -101,20 +103,18 @@
                         <TextBox Watermark="Введите количество товара"></TextBox>
                         <Button
                             Content="Сохранить"
-                            HorizontalAlignment="Stretch"
+                            Classes="form-btn"
                             Command="{Binding UpdateCommand}"></Button>
                     </StackPanel>
                 </Expander>
 
                 <Button
-                    Background="LightGray"
-                    Foreground="Black"
+                    Padding="15"
                     Content="Удалить заказ"
                     HorizontalAlignment="Stretch"
                     Command="{Binding DeleteCommand}"></Button>
                 <Button
-                    Background="LightGray"
-                    Foreground="Black"
+                    Padding="15"
                     Content="Просмотреть детали заказа"
                     HorizontalAlignment="Stretch"
                     Command="{Binding GoToMoreInfoCommand}"></Button>

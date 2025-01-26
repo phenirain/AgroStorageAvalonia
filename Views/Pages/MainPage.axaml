@@ -24,7 +24,8 @@
                     Text="Состояние склада"></TextBlock>
                 <Border Classes="block">
                     <DataGrid
-                        ItemsSource="">
+                        ItemsSource=""
+                        SelectedItem="">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Адрес склада"
@@ -48,11 +49,13 @@
                 <TextBlock
                     Classes="p"
                     Text="Статус заказа"/>
-                <ComboBox PlaceholderText="Выберите статус"></ComboBox>
+                <ComboBox
+                    HorizontalAlignment="Left"
+                    PlaceholderText="Выберите статус"></ComboBox>
                 <Border Classes="block">
                     <DataGrid
                         ItemsSource=""
-                    >
+                        SelectedItem="">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Название компании"
