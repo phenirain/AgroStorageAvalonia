@@ -36,7 +36,7 @@
                     Command="{Binding CreateCompletedOrdersReportCommand}"></Button>
                 <Button
                     Classes="form-btn"
-                    Content="Сформировать отчёт по доходам от продаж "
+                    Content="Сформировать отчёт по доходам от продаж"
                     Command="{Binding CreateRevenueReportCommand}"></Button>
             </StackPanel>
         </Border>
