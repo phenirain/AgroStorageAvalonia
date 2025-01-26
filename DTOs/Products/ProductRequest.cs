@@ -27,7 +27,7 @@ public class CreateProductRequest
     public int ReservedQuantity { get; set; }
 }
 
-public class UpdateProductRequest : CreateOrderRequest
+public class UpdateProductRequest : CreateProductRequest
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }

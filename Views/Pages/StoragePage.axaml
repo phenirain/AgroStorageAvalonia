@@ -21,29 +21,32 @@
                     Classes="p" Text="Категория"/>
                 <ComboBox
                     HorizontalAlignment="Left"
+                    ItemsSource="{Binding Categories}"
+                    DisplayMemberBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory}"
                     PlaceholderText="Выберите категорию"/>
                 <Border
                     Classes="border-default"
                     Padding="5">
                     <DataGrid
-                        ItemsSource=""
-                        SelectedItem="">
+                        ItemsSource="{Binding Products}"
+                        SelectedItem="{Binding SelectedProduct}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Наименование товара"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Name}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Категория"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Category.Name}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Артикул"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Article}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Количество на складе"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Quantity}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Цена"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Price}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -64,6 +67,9 @@
                                 Classes="p"
                                 Text="Категория"></TextBlock>
                             <ComboBox
+                                ItemsSource="{Binding Categories}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding CreateProduct.CategoryId}"
                                 PlaceholderText="Выберите категорию"></ComboBox>
                             <TextBlock
                                 Classes="p"
@@ -71,21 +77,28 @@
                             <TextBox
                                 Watermark="Введите название товара"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateProduct.Name}"></TextBox>
+                            <TextBlock
+                                Classes="p"
+                                Text="Артикул"></TextBlock>
+                            <TextBox
+                                Watermark="Введите артикул"
+                                HorizontalAlignment="Stretch"
+                                Text="{Binding CreateProduct.Article}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Количество на складе"></TextBlock>
                             <TextBox
                                 Watermark="Введите количество"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateProduct.Quantity}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Цена"></TextBlock>
                             <TextBox
                                 Watermark="Введите цену"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateProduct.Price}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
@@ -103,6 +116,9 @@
                                 Classes="p"
                                 Text="Категория"></TextBlock>
                             <ComboBox
+                                ItemsSource="{Binding Categories}"
+                                SelectedValueBinding="{Binding Id}"
+                                SelectedItem="{Binding UpdateProduct.CategoryId}"
                                 PlaceholderText="Выберите категорию"></ComboBox>
                             <TextBlock
                                 Classes="p"
@@ -110,21 +126,21 @@
                             <TextBox
                                 Watermark="Введите название товара"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateProduct.Name}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Количество на складе"></TextBlock>
                             <TextBox
                                 Watermark="Введите количество"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateProduct.Quantity}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Цена"></TextBlock>
                             <TextBox
                                 Watermark="Введите цену"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateProduct.Price}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
