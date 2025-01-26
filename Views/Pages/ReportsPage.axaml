@@ -3,6 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="desktop.Views.Pages.ReportsPage">
-    Welcome to Avalonia!
+             x:Class="desktop.Views.Pages.ReportsPage"
+             xmlns:vm="using:desktop.ViewModels.PagesViewModels"
+             x:DataType="vm:ReportsPageViewModel">
+    <Border
+        Padding="15"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Width="300"
+        Height="200">
+        <StackPanel>
+            <TextBlock
+                Classes="h1"
+                Text="Создание отчётов"></TextBlock>
+            <Button
+                Content="Сформировать отчёт по остаткам товаров на складе"
+                Command="{Binding CreateStorageRemainsReportCommand}"></Button>
+            <Button
+                Content="Сформировать отчёт по выполненным заказам"
+                Command="{Binding CreateCompletedOrdersReportCommand}"></Button>
+            <Button
+                Content="Сформировать отчёт по доходам от продаж "
+                Command="{Binding CreateRevenueReportCommand}"></Button>
+        </StackPanel>
+    </Border>
 </UserControl>
