@@ -52,9 +52,7 @@
             <StackPanel
                 Spacing="10">
                 <Expander
-                    Header="Создать заказ"
-                    Classes="border-default"
-                    Padding="5">
+                    Header="Создать заказ">
                     <StackPanel
                         Spacing="10">
                         <TextBlock
@@ -76,13 +74,12 @@
                         <TextBox Watermark="Введите количество товара"></TextBox>
                         <Button
                             Content="Сохранить"
+                            HorizontalAlignment="Stretch"
                             Command="{Binding SaveCommand}"></Button>
                     </StackPanel>
                 </Expander>
                 <Expander
-                    Header="Редактировать заказ"
-                    Classes="border-default"
-                    Padding="5">
+                    Header="Редактировать заказ">
                     <StackPanel
                         Spacing="10">
                         <TextBlock
@@ -104,6 +101,7 @@
                         <TextBox Watermark="Введите количество товара"></TextBox>
                         <Button
                             Content="Сохранить"
+                            HorizontalAlignment="Stretch"
                             Command="{Binding UpdateCommand}"></Button>
                     </StackPanel>
                 </Expander>
@@ -112,11 +110,13 @@
                     Background="LightGray"
                     Foreground="Black"
                     Content="Удалить заказ"
+                    HorizontalAlignment="Stretch"
                     Command="{Binding DeleteCommand}"></Button>
                 <Button
                     Background="LightGray"
                     Foreground="Black"
                     Content="Просмотреть детали заказа"
+                    HorizontalAlignment="Stretch"
                     Command="{Binding GoToMoreInfoCommand}"></Button>
             </StackPanel>
         </ScrollViewer>

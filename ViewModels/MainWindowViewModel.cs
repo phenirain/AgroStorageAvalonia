@@ -22,7 +22,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool CanGoToStorage() => _role is "Manager" or "StorageManager";
 
     [RelayCommand(CanExecute = nameof(CanGoToStorage))]
-    public async Task GoToStorage()
+    private async Task GoToStorage()
     {
         CurrentPage = new StoragePage();
     }
@@ -30,14 +30,14 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool CanGoToOrders() => _role is "Manager" or "SalesManager";
 
     [RelayCommand(CanExecute = nameof(CanGoToOrders))]
-    public async Task GoToOrders()
+    private async Task GoToOrders()
     {
         CurrentPage = new MainOrderPage();
     }
 
     private bool CanGoToDeliveries() => _role is "Manager" or "Logician";
     [RelayCommand(CanExecute = nameof(CanGoToDeliveries))]
-    public async Task GoToDeliveries()
+    private async Task GoToDeliveries()
     {
         CurrentPage = new DeliveryPage();
     }
@@ -45,7 +45,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool CanGoToReports() => _role == "Manager";
 
     [RelayCommand(CanExecute = nameof(CanGoToReports))]
-    public async Task GoToReports()
+    private async Task GoToReports()
     {
         CurrentPage = new ReportsPage();
     }
@@ -53,7 +53,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool CanGoToClients() => _role is "Manager" or "SalesManager";
 
     [RelayCommand(CanExecute = nameof(CanGoToClients))]
-    public async Task GoToClients()
+    private async Task GoToClients()
     {
         CurrentPage = new ClientPage();
     }

@@ -53,5 +53,11 @@
         <Style Selector="DataGridColumnHeader">
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <Style Selector="Expander">
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
     </Application.Styles>
 </Application>
