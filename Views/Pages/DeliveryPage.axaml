@@ -107,7 +107,7 @@
                 </Expander>
                 <Button
                     Padding="15"
-                    Content="Удалить маршрут"
+                    Content="Удалить доставку"
                     HorizontalAlignment="Stretch"
                     Command="{Binding DeleteCommand}"></Button>
                 <Expander
