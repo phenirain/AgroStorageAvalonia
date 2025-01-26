@@ -59,7 +59,7 @@ public static class ApiHelper
         throw new RequestException($"Failed to post to {_url}/{path}: Status code: {response.StatusCode}");
     }
 
-    public static async Task<bool> Put<T>(T entity, string path, int id)
+    public static async Task Put<T>(T entity, string path, int id)
     {
         var client = new HttpClient();
         string json = JsonSerializer.Serialize(entity);
@@ -74,7 +74,6 @@ public static class ApiHelper
                 {
                     throw new RequestException($"Bad request to {_url}/{path}/{id}: Message: {result.Message}, Status code: {result.Status}");
                 }
-                return true;
             }
         }
         throw new RequestException($"Failed to put to {_url}/{path}/{id}: Status code: {response.StatusCode}");

@@ -21,30 +21,30 @@
                     Classes="p" Text="Поиск"/>
                 <TextBox
                     HorizontalAlignment="Left"
-                    Watermark="Введите компанию или контактную информацию"
-                    Text=""/>
+                    Watermark="Введите компанию"
+                    Text="{Binding SearchText}"/>
                 <Border
                     Classes="border-default"
                     Padding="5">
                     <DataGrid
-                        ItemsSource=""
-                        SelectedItem="">
+                        ItemsSource="{Binding Clients}"
+                        SelectedItem="{Binding SelectedClient}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="ID клиента"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Id}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Название компании"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding CompanyName}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Контактное лицо"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding ContactPerson}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Телефон"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding TelephoneNumber}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Электронная почта"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Email}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -65,30 +65,30 @@
                                 Classes="p"
                                 Text="Название компании"></TextBlock>
                             <TextBox
-                                Watermark="Введите количество товара"
+                                Watermark="Введите название компании"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateClient.CompanyName}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Контактное лицо"></TextBlock>
                             <TextBox
                                 Watermark="Введите контактное лицо"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateClient.ContactPerson}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Телефон"></TextBlock>
                             <TextBox
                                 Watermark="Введите телефон"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateClient.TelephoneNumber}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Электронная почта"></TextBlock>
                             <TextBox
                                 Watermark="Введите электронную почту"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding CreateClient.Email}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
@@ -106,30 +106,30 @@
                                 Classes="p"
                                 Text="Название компании"></TextBlock>
                             <TextBox
-                                Watermark="Введите количество товара"
+                                Watermark="Введите название компании"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateClient.CompanyName}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Контактное лицо"></TextBlock>
                             <TextBox
                                 Watermark="Введите контактное лицо"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateClient.ContactPerson}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Телефон"></TextBlock>
                             <TextBox
                                 Watermark="Введите телефон"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateClient.TelephoneNumber}"></TextBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Электронная почта"></TextBlock>
                             <TextBox
                                 Watermark="Введите электронную почту"
                                 HorizontalAlignment="Stretch"
-                                Text=""></TextBox>
+                                Text="{Binding UpdateClient.Email}"></TextBox>
                             <Button
                                 Content="Сохранить"
                                 Classes="form-btn"
