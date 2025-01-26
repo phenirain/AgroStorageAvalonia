@@ -127,7 +127,7 @@ public partial class DeliveryPageViewModel: ViewModelBase
     {
         try
         {
-            CreateDeliveryRequest.Status = DeliveryStatus.OnTheWay;
+            CreateDeliveryRequest.Status = DeliveryStatus.Scheduled;
             await ApiHelper.Put(UpdateDeliveryRequest, $"deliveries", UpdateDeliveryRequest.Id);
             var delivery = Deliveries.First(d => d.Id == UpdateDeliveryRequest.Id);
             delivery.Id = UpdateDeliveryRequest.Id;

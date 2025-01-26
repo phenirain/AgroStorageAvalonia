@@ -6,6 +6,8 @@ namespace desktop.Models.Entities;
 
 public enum DeliveryStatus
 {
+    [EnumMember(Value = "запланирована")]
+    Scheduled,
     [EnumMember(Value = "в пути")]
     OnTheWay,
     [EnumMember(Value = "отменен")]

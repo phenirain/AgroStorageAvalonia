@@ -3,7 +3,9 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                x:Class="desktop.Views.Pages.MainPage">
+                x:Class="desktop.Views.Pages.MainPage"
+                xmlns:vm="using:desktop.ViewModels.PagesViewModels"
+                x:DataType="vm:MainPageViewModel">
 
     <ContentControl.Styles>
         <Style Selector="Border.block">
@@ -24,21 +26,20 @@
                     Text="Состояние склада"></TextBlock>
                 <Border Classes="block">
                     <DataGrid
-                        ItemsSource=""
-                        SelectedItem="">
+                        ItemsSource="{Binding Products}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
-                                Header="Адрес склада"
-                                Binding=""></DataGridTextColumn>
+                                Header="Место товара"
+                                Binding="{Binding Location}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Номер товара"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Id}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Артикул товара"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Article}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Количество товара"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Quantity}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -51,33 +52,34 @@
                     Text="Статус заказа"/>
                 <ComboBox
                     HorizontalAlignment="Left"
+                    ItemsSource="{Binding DeliveryStatuses}"
+                    SelectedItem="{Binding SelectedDeliveryStatus}"
                     PlaceholderText="Выберите статус"></ComboBox>
                 <Border Classes="block">
                     <DataGrid
-                        ItemsSource=""
-                        SelectedItem="">
+                        ItemsSource="{Binding Deliveries}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Название компании"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Order.Client.CompanyName}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Контактное лицо"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Order.Client.ContactPerson}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Телефон"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Order.Client.TelephoneNumber}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Статус выполнения"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Order.Status, Converter={StaticResource EnumMemberConverter}}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Сроки доставки"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Date}"></DataGridTextColumn>
                             <DataGridTextColumn
-                                Header="Адрес доставки"
-                                Binding=""></DataGridTextColumn>
+                                Header="Маршрут доставки"
+                                Binding="{Binding Route}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Итоговая сумма"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding Order.TotalPrice}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -94,17 +96,17 @@
                         <ListBox
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ItemsSource="">
+                            ItemsSource="{Binding ScheduledDeliveries}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
                                         Classes="mini">
                                         <StackPanel Spacing="2">
                                             <TextBlock
-                                                Text="Доставка №"
+                                                Text="{Binding Id, StringFormat='Доставка №{0}'}"
                                                 FontSize="14"/>
                                             <TextBlock
-                                                Text="Адрес принятия товара:"
+                                                Text="{Binding Order.Product.Location, StringFormat='Адрес принятия товара: {0}'}"
                                                 Classes="p"/>
                                         </StackPanel>
                                     </Border>
@@ -118,20 +120,20 @@
                         <ListBox
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ItemsSource="">
+                            ItemsSource="{Binding ActiveDeliveries}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
                                         Classes="mini">
                                         <StackPanel Spacing="2">
                                             <TextBlock
-                                                Text="Доставка №"
+                                                Text="{Binding Id, StringFormat='Доставка №{0}'}"
                                                 FontSize="14"/>
                                             <TextBlock
-                                                Text="Адрес принятия товара:"
+                                                Text="{Binding Order.Product.Location, StringFormat='Адрес принятия товара: {0}'}"
                                                 Classes="p"/>
                                             <TextBlock
-                                                Text="Дата начала доставки: "
+                                                Text="{Binding Order.Date, StringFormat='Дата заказа: {0}'}"
                                                 Classes="p"/>
                                         </StackPanel>
                                     </Border>
@@ -145,26 +147,26 @@
                         <ListBox
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ItemsSource="">
+                            ItemsSource="{Binding CompletedDeliveries}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
                                         Classes="mini">
                                         <StackPanel Spacing="2">
                                             <TextBlock
-                                                Text="Доставка №"
+                                                Text="{Binding Id, StringFormat='Доставка №{0}'}"
                                                 FontSize="14"/>
                                             <TextBlock
-                                                Text="Адрес принятия товара:"
+                                                Text="{Binding Order.Product.Location, StringFormat='Адрес принятия товара: {0}'}"
                                                 Classes="p"/>
                                             <TextBlock
-                                                Text="Дата начала доставки: "
+                                                Text="{Binding Order.Date, StringFormat='Дата заказа: {0}'}"
                                                 Classes="p"/>
                                             <TextBlock
-                                                Text="Адрес доставки товара:"
+                                                Text="{Binding Route, StringFormat='Маршрут: {0}'}"
                                                 Classes="p"/>
                                             <TextBlock
-                                                Text="Дата конца доставки: "
+                                                Text="{Binding Date, StringFormat='Дата доставки: {0}'}"
                                                 Classes="p"/>
                                         </StackPanel>
                                     </Border>
