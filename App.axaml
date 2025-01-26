@@ -30,6 +30,11 @@
         <Style Selector="TextBox">
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
         </Style>
+        <Style Selector="DatePicker">
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        </Style>
         <Style Selector="ComboBox">
             <Setter Property="Padding" Value="10"></Setter>
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
