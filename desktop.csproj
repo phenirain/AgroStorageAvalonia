@@ -11,7 +11,11 @@
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
     <Folder Include="Assets\" />
-    <Folder Include="Models\Entities\" />
+    <Folder Include="DTOs\Clients\" />
+    <Folder Include="DTOs\Deliveries\" />
+    <Folder Include="DTOs\Employees\" />
+    <Folder Include="DTOs\Orders\" />
+    <Folder Include="DTOs\Products\" />
     <Folder Include="Views\Components\" />
   </ItemGroup>
 
