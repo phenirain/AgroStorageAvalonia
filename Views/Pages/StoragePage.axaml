@@ -68,6 +68,7 @@
                                 Text="Категория"></TextBlock>
                             <ComboBox
                                 ItemsSource="{Binding Categories}"
+                                DisplayMemberBinding="{Binding Name}"
                                 SelectedValueBinding="{Binding Id}"
                                 SelectedItem="{Binding CreateProduct.CategoryId}"
                                 PlaceholderText="Выберите категорию"></ComboBox>
