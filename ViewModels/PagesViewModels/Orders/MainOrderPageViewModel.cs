@@ -52,9 +52,9 @@ public partial class MainOrderPageViewModel: ViewModelBase
     public MainOrderPageViewModel(ContentControl currentPage)
     {
         OrderStatuses = ProgramHelper.GetEnumMemberValues<OrderStatus>();
-        // Task.Run(() => LoadOrders());
-        // Task.Run(() => LoadClients());
-        // Task.Run(() => LoadProducts());œ\
+        Task.Run(() => LoadOrders());
+        Task.Run(() => LoadClients());
+        Task.Run(() => LoadProducts());
     }
 
     #region Loading Data

@@ -1,30 +1,31 @@
-using System.Text.Json.Serialization;
+
+using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public class Product
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("article")]
+    [JsonProperty("article")]
     public string Article { get; set; }
 
-    [JsonPropertyName("category")]
+    [JsonProperty("category")]
     public ProductCategory Category { get; set; }
 
-    [JsonPropertyName("quantity_in_stock")]
+    [JsonProperty("quantity_in_stock")]
     public int Quantity { get; set; }
 
-    [JsonPropertyName("price")]
+    [JsonProperty("price")]
     public decimal Price { get; set; }
 
-    [JsonPropertyName("location")]
+    [JsonProperty("location")]
     public string Location { get; set; }
 
-    [JsonPropertyName("reserved_quantity")]
+    [JsonProperty("reserved_quantity")]
     public int ReservedQuantity { get; set; }
 }

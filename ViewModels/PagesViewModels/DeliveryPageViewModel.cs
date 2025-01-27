@@ -42,9 +42,9 @@ public partial class DeliveryPageViewModel: ViewModelBase
     public DeliveryPageViewModel(ContentControl currentPage)
     {
         _currentPage = currentPage;
-        // _ = LoadDeliveries();
-        // _ = LoadOrders();
-        // _ = LoadDrivers();
+        _ = LoadDeliveries();
+        _ = LoadOrders();
+        _ = LoadDrivers();
     }
 
     #region Loading Data

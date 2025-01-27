@@ -17,24 +17,21 @@ namespace desktop.ViewModels;
 
 public partial class AuthWindowViewModel: ViewModelBase
 {
-    [ObservableProperty] 
-    [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    // [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    [ObservableProperty]
     private string username;
-    [ObservableProperty] 
-    [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    // [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    [ObservableProperty]
     private string password;
 
-    private bool CanLogIn => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+    // private bool CanLogIn => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
     
-    [RelayCommand(CanExecute = nameof(CanLogIn))]
-    public async Task LogIn()
+    // [RelayCommand(CanExecute = nameof(CanLogIn))]
+    [RelayCommand]
+    public async Task Auth()
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
-            {
-                return;
-            }
             var currentWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
                 ? desktop.Windows.FirstOrDefault(w => w.IsActive)
                 : null;

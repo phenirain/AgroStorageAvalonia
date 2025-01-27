@@ -33,7 +33,7 @@ public partial class ClientPageViewModel: ViewModelBase
 
     public ClientPageViewModel(ContentControl currentPage)
     {
-        // _ = LoadClients();
+        _ = LoadClients();
     }
 
     partial void OnSearchTextChanged(string value)

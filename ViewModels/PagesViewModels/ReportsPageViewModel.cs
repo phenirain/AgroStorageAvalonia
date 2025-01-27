@@ -125,16 +125,16 @@ public partial class ReportsPageViewModel: ViewModelBase
             table.AddHeaderCell("Итоговая сумма");
 
             var orders = await ApiHelper.GetAll<List<Order>>("orders");
-            foreach (var order in orders.Where(o => o.Status == OrderStatus.Completed))
-            {
-                table.AddCell(order.Id.ToString());
-                table.AddCell(order.Client.CompanyName);
-                table.AddCell(order.Client.ContactPerson);
-                table.AddCell(order.Date.ToString("dd.MM.yyyy"));
-                table.AddCell(order.Product.Article);
-                table.AddCell(order.Quantity.ToString(""));
-                table.AddCell(order.TotalPrice.ToString() + " .руб");
-            }
+            // foreach (var order in orders.Where(o => o.Status == OrderStatus.Completed))
+            // {
+                // table.AddCell(order.Id.ToString());
+                // table.AddCell(order.Client.CompanyName);
+                // table.AddCell(order.Client.ContactPerson);
+                // table.AddCell(order.Date.ToString("dd.MM.yyyy"));
+                // table.AddCell(order.Product.Article);
+                // table.AddCell(order.Quantity.ToString(""));
+                // table.AddCell(order.TotalPrice.ToString() + " .руб");
+            // }
 
             document.Add(table);
             document.Close();

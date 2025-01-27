@@ -1,12 +1,13 @@
-using System.Text.Json.Serialization;
+
+using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public class ProductCategory
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 }

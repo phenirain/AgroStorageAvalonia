@@ -20,7 +20,7 @@ public partial class StoragePageViewModel: ViewModelBase
 {
     private readonly ContentControl _currentPage;
 
-    public List<ProductCategory> Categories { get; set; }
+    [ObservableProperty] private ObservableCollection<ProductCategory> _categories;
     [ObservableProperty] private ObservableCollection<Product> _products;
     private List<Product> _allProducts;
     [ObservableProperty] private Product? _selectedProduct;
@@ -36,8 +36,8 @@ public partial class StoragePageViewModel: ViewModelBase
     public StoragePageViewModel(ContentControl currentPage)
     {
         _currentPage = currentPage;
-        // _ = LoadProducts();
-        // _ = LoadCategories();
+        _ = LoadProducts();
+        _ = LoadCategories();
     }
 
     #region Loading Data
@@ -50,7 +50,7 @@ public partial class StoragePageViewModel: ViewModelBase
 
     private async Task LoadCategories()
     {
-        Categories = await ApiHelper.GetAll<List<ProductCategory>>("products/categories");
+        Categories = await ApiHelper.GetAll<ObservableCollection<ProductCategory>>("products/categories");
     }
 
     #endregion

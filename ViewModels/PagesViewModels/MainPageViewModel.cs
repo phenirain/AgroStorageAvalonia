@@ -9,7 +9,7 @@ using desktop.Support.Api;
 
 namespace desktop.ViewModels.PagesViewModels;
 
-public partial class MainPageViewModel : ViewModelBase
+public partial class MainPageViewModel : ObservableObject
 {
     public List<string> DeliveryStatuses { get; set; } = ProgramHelper.GetEnumMemberValues<DeliveryStatus>();
     [ObservableProperty] private string? _selectedDeliveryStatus;
@@ -22,9 +22,8 @@ public partial class MainPageViewModel : ViewModelBase
 
     public MainPageViewModel()
     {
-        // _ = LoadDeliveries();
-        // _ = LoadOrders();
-        // _ = LoadProducts();
+        _ = LoadDeliveries();
+        _ = LoadProducts();
     }
 
     #region Loading Data
@@ -42,6 +41,7 @@ public partial class MainPageViewModel : ViewModelBase
     private async Task LoadProducts()
     {
         Products = await ApiHelper.GetAll<ObservableCollection<Product>>("products");
+        var a = Products;
     }
 
     #endregion

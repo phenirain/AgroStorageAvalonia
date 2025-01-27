@@ -26,6 +26,8 @@
                     Text="Состояние склада"></TextBlock>
                 <Border Classes="block">
                     <DataGrid
+                        Background="#444444"
+                        BorderBrush="LightGray"
                         ItemsSource="{Binding Products}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
@@ -86,7 +88,7 @@
 
                 <TextBlock
                     Classes="h1"
-                    Text="Заказы"></TextBlock>
+                    Text="Доставки"></TextBlock>
                 <Border Classes="block" Padding="10">
                     <StackPanel Spacing="10">
                         <TextBlock
@@ -115,7 +117,7 @@
                         </ListBox>
 
                         <TextBlock
-                            Classes="h2"
+                            Classes="h1"
                             Text="Активные доставки"/>
                         <ListBox
                             Background="Transparent"

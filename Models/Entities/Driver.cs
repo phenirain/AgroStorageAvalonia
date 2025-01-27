@@ -1,12 +1,12 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public class Driver
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("full_name")]
+    [JsonProperty("full_name")]
     public string FullName { get; set; }
 }

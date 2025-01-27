@@ -1,42 +1,40 @@
 using System;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public enum DeliveryStatus
 {
-    [EnumMember(Value = "запланирована")]
     Scheduled,
-    [EnumMember(Value = "в пути")]
     OnTheWay,
-    [EnumMember(Value = "отменен")]
     Canceled,
-    [EnumMember(Value = "завершен")]
     Completed
 }
 
 
 public class Delivery
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public Order Order { get; set; }
 
-    [JsonPropertyName("delivery_date")]
+    [JsonProperty("date")]
     public DateTime Date { get; set; }
 
-    [JsonPropertyName("transport")]
+    [JsonProperty("transport")]
     public string Transport { get; set; }
 
-    [JsonPropertyName("route")]
+    [JsonProperty("route")]
     public string Route { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
+    [Newtonsoft.Json.JsonConverter(typeof(JsonStringEnumConverter))]
     public DeliveryStatus Status { get; set; }
 
-    [JsonPropertyName("driver")]
+    [JsonProperty("driver")]
     public Driver Driver { get; set; }
 }

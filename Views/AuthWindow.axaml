@@ -42,7 +42,8 @@
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center"
                     CornerRadius="5"
-                    Command="{Binding LogInCommand}"></Button>
+                    Command="{Binding AuthCommand}"
+                    ></Button>
         </StackPanel>
     </Border>
         
