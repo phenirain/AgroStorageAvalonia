@@ -67,18 +67,20 @@ public partial class ClientPageViewModel: ViewModelBase
         _allClients = Clients.ToList();
     }
 
-    private bool CanSave() =>
+    private bool CanSave =>
         !string.IsNullOrEmpty(CreateClient.CompanyName) &&
               !string.IsNullOrEmpty(CreateClient.ContactPerson) &&
               !string.IsNullOrEmpty(CreateClient.TelephoneNumber) &&
               !string.IsNullOrEmpty(CreateClient.Email);
 
 
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand]
     private async Task Save()
     {
         try
         {
+            if (!CanSave)
+                return;
             var client = await ApiHelper.Post<Client, CreateClientRequest>(CreateClient, "clients");
             Clients.Add(client);
         }
@@ -96,7 +98,7 @@ public partial class ClientPageViewModel: ViewModelBase
         }
     }
 
-    private bool CanUpdate() =>
+    private bool CanUpdate =>
         UpdateClient.Id != 0 &&
         !string.IsNullOrEmpty(UpdateClient.CompanyName) &&
         !string.IsNullOrEmpty(UpdateClient.ContactPerson) &&
@@ -104,11 +106,13 @@ public partial class ClientPageViewModel: ViewModelBase
         !string.IsNullOrEmpty(UpdateClient.Email);
 
 
-    [RelayCommand(CanExecute = nameof(CanUpdate))]
+    [RelayCommand]
     private async Task Update()
     {
         try
         {
+            if (!CanUpdate)
+                return;
             await ApiHelper.Put(UpdateClient, $"clients", UpdateClient.Id);
             var client = _allClients.First(c => c.Id == UpdateClient.Id);
             client.CompanyName = UpdateClient.CompanyName;
@@ -130,13 +134,15 @@ public partial class ClientPageViewModel: ViewModelBase
         }
     }
 
-    private bool CanDelete() => SelectedClient is not null;
+    private bool CanDelete => SelectedClient is not null;
 
     [RelayCommand]
     private async Task Delete()
     {
         try
         {
+            if (!CanDelete)
+                return;
             await ApiHelper.Delete($"clients", SelectedClient!.Id);
             Clients.Remove(SelectedClient);
         }
