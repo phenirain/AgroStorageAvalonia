@@ -26,11 +26,12 @@ public partial class StoragePageViewModel: ViewModelBase
     [ObservableProperty] private Product? _selectedProduct;
     [ObservableProperty] private ProductCategory? _selectedCategory;
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     private CreateProductRequest _createProduct = new CreateProductRequest();
+    [ObservableProperty] private ProductCategory? _createProductCategory;
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     private UpdateProductRequest _updateProduct = new UpdateProductRequest();
+
+    [ObservableProperty] private ProductCategory? _UpdateProductCategory;
 
 
     public StoragePageViewModel(ContentControl currentPage)
@@ -54,6 +55,20 @@ public partial class StoragePageViewModel: ViewModelBase
     }
 
     #endregion
+    
+    #region ChangeHandlers
+
+    partial void OnCreateProductCategoryChanged(ProductCategory? value)
+    {
+        if (value is not null)
+            CreateProduct.CategoryId = value.Id;
+    }
+
+    partial void OnUpdateProductCategoryChanged(ProductCategory? value)
+    {
+        if (value is not null)
+            UpdateProduct.CategoryId = value.Id;
+    }
 
     partial void OnSelectedCategoryChanged(ProductCategory? value)
     {
@@ -71,6 +86,7 @@ public partial class StoragePageViewModel: ViewModelBase
     {
         if (value is not null)
         {
+            UpdateProductCategory = Categories.First(c => c.Id == value.Id);
             UpdateProduct = new UpdateProductRequest()
             {
                 Id = value.Id,
@@ -84,8 +100,10 @@ public partial class StoragePageViewModel: ViewModelBase
             };
         }
     }
-
-    private bool CanSave() =>
+    
+    #endregion
+    
+    private bool CanSave =>
         CreateProduct.CategoryId != 0
         && !string.IsNullOrEmpty(CreateProduct.Name)
         && !string.IsNullOrEmpty(CreateProduct.Article)
@@ -93,11 +111,13 @@ public partial class StoragePageViewModel: ViewModelBase
         && CreateProduct.Price > 0;
 
 
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand]
     private async Task Save()
     {
         try
         {
+            if (!CanSave)
+                return;
             var product = await ApiHelper.Post<Product, CreateProductRequest>(CreateProduct, "products");
             Products.Add(product);
         }
@@ -115,18 +135,20 @@ public partial class StoragePageViewModel: ViewModelBase
         }
     }
 
-    private bool CanUpdate() =>
+    private bool CanUpdate =>
         UpdateProduct.CategoryId != 0
         && !string.IsNullOrEmpty(UpdateProduct.Name)
         && !string.IsNullOrEmpty(UpdateProduct.Article)
         && UpdateProduct.CategoryId > 0
         && UpdateProduct.Price > 0;
 
-    [RelayCommand(CanExecute = nameof(CanUpdate))]
+    [RelayCommand]
     private async Task Update()
     {
         try
         {
+            if (!CanUpdate)
+                return;
             await ApiHelper.Put(UpdateProduct, $"products", UpdateProduct.Id);
             var product = _allProducts.First(p => p.Id == UpdateProduct.Id);
             product.Name = UpdateProduct.Name;
@@ -151,13 +173,15 @@ public partial class StoragePageViewModel: ViewModelBase
         }
     }
 
-    private bool CanDelete() => SelectedProduct is not null;
+    private bool CanDelete => SelectedProduct is not null;
 
     [RelayCommand]
     private async Task Delete()
     {
         try
         {
+            if (!CanDelete)
+                return;
             await ApiHelper.Delete($"products", SelectedProduct.Id);
             Products.Remove(SelectedProduct);
         }
