@@ -33,6 +33,7 @@ public partial class OrderInfoPageViewModel: ViewModelBase
     {
         Order = order;
         _lastStatus = order.Status;
+        _currentPage = currentPage;
     }
 
     [RelayCommand]
@@ -47,9 +48,11 @@ public partial class OrderInfoPageViewModel: ViewModelBase
          || _lastStatus != OrderStatus.Delivering)
         && string.IsNullOrEmpty(Status);
 
-    [RelayCommand(CanExecute = nameof(CanUpdateStatus))]
+    [RelayCommand]
     private async Task UpdateStatus()
     {
+        if (!CanUpdateStatus)
+            return;
         _updateOrder.Id = Order.Id;
         _updateOrder.ProductId = Order.Product.Id;
         _updateOrder.ClientId = Order.Client.Id;

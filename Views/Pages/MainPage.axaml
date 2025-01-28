@@ -50,7 +50,7 @@
                     Text="Заказы"></TextBlock>
                 <TextBlock
                     Classes="p"
-                    Text="Статус заказа"/>
+                    Text="Статус доставки"/>
                 <ComboBox
                     HorizontalAlignment="Left"
                     ItemsSource="{Binding DeliveryStatuses}"

@@ -45,7 +45,7 @@
                                 Binding="{Binding Status, Converter={StaticResource EnumMemberConverter}}"></DataGridTextColumn>
                             <DataGridTextColumn
                                 Header="Итоговая сумма"
-                                Binding=""></DataGridTextColumn>
+                                Binding="{Binding TotalPrice}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -68,8 +68,7 @@
                             <ComboBox
                                 ItemsSource="{Binding Clients}"
                                 DisplayMemberBinding="{Binding CompanyName}"
-                                SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding CreateOrder.ClientId}"
+                                SelectedItem="{Binding CreateOrderClient}"
                                 PlaceholderText="Выберите клиента"></ComboBox>
                             <TextBlock
                                 Classes="p"
@@ -78,7 +77,7 @@
                                 ItemsSource="{Binding Products}"
                                 DisplayMemberBinding="{Binding Article}"
                                 SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding CreateOrder.ProductId}"
+                                SelectedItem="{Binding CreateOrderProduct}"
                                 PlaceholderText="Выберите товар"></ComboBox>
                             <TextBlock
                                 Classes="p"
@@ -99,15 +98,14 @@
                             Spacing="10">
                             <TextBlock
                                 Classes="h1"
-                                Text="Создание заказа"></TextBlock>
+                                Text="Редактирование заказа"></TextBlock>
                             <TextBlock
                                 Classes="p"
                                 Text="Клиента"></TextBlock>
                             <ComboBox
                                 ItemsSource="{Binding Clients}"
                                 DisplayMemberBinding="{Binding CompanyName}"
-                                SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding UpdateOrder.ClientId}"
+                                SelectedItem="{Binding UpdateOrderClient}"
                                 PlaceholderText="Выберите клиента"></ComboBox>
                             <TextBlock
                                 Classes="p"
@@ -115,8 +113,7 @@
                             <ComboBox
                                 ItemsSource="{Binding Products}"
                                 DisplayMemberBinding="{Binding Article}"
-                                SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding UpdateOrder.ProductId}"
+                                SelectedItem="{Binding UpdateOrderProduct}"
                                 PlaceholderText="Выберите товар"></ComboBox>
                             <TextBlock
                                 Classes="p"

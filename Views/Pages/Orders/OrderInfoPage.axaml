@@ -173,6 +173,7 @@
                         SelectedItem="{Binding Status}"
                         PlaceholderText="Выберите статус"></ComboBox>
                     <Button
+                        Padding="10"
                         Content="Сохранить"
                         HorizontalAlignment="Stretch"
                         Command="{Binding UpdateStatusCommand}"></Button>

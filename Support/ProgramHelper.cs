@@ -30,11 +30,11 @@ public class ProgramHelper
 
         foreach (var field in enumType.GetFields())
         {
-            var enumMember = field.GetCustomAttributes(typeof(EnumMemberAttribute), false)
-                .Cast<EnumMemberAttribute>()
+            var enumMember = field.GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .Cast<DescriptionAttribute>()
                 .FirstOrDefault();
 
-            if (enumMember != null && enumMember.Value == value)
+            if (enumMember != null && enumMember.Description == value)
             {
                 return (TEnum?)field.GetValue(null);
             }

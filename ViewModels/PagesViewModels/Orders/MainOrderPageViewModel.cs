@@ -29,8 +29,8 @@ public partial class MainOrderPageViewModel: ViewModelBase
 
     #region Static Properties
 
-    public List<Client> Clients { get; set; } = new ();
-    public List<Product> Products { get; set; } = new ();
+    [ObservableProperty]private ObservableCollection<Client> _clients = new ();
+    [ObservableProperty]private ObservableCollection<Product> _products = new ();
 
     #endregion
 
@@ -40,10 +40,12 @@ public partial class MainOrderPageViewModel: ViewModelBase
     private List<Order> _allOrders;
     [ObservableProperty] private Order? _selectedOrder;
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     private CreateOrderRequest _createOrder = new CreateOrderRequest();
-    [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
+    [ObservableProperty] private Client? _createOrderClient;
+    [ObservableProperty] private Product? _createOrderProduct;
     [ObservableProperty] private UpdateOrderRequest _updateOrder = new UpdateOrderRequest();
+    [ObservableProperty] private Client? _updateOrderClient;
+    [ObservableProperty] private Product? _updateOrderProduct;
 
     #endregion
 
@@ -68,15 +70,42 @@ public partial class MainOrderPageViewModel: ViewModelBase
 
     private async Task LoadClients()
     {
-        Clients = await ApiHelper.GetAll<List<Client>>("clients");
+        Clients = await ApiHelper.GetAll<ObservableCollection<Client>>("clients");
     }
 
     private async Task LoadProducts()
     {
-        Products = await ApiHelper.GetAll<List<Product>>("products");
+        Products = await ApiHelper.GetAll<ObservableCollection<Product>>("products");
     }
 
     #endregion
+    
+    #region Change Handlers
+
+    partial void OnCreateOrderClientChanged(Client? value)
+    {
+        if (value is not null)
+            CreateOrder.ClientId = value.Id;
+    }
+
+    partial void OnCreateOrderProductChanged(Product? value)
+    {
+        if (value is not null)
+            CreateOrder.ProductId = value.Id;
+    }
+    
+    partial void OnUpdateOrderClientChanged(Client? value)
+    {
+        if (value is not null) 
+            UpdateOrder.ClientId = value.Id;
+    }
+    
+    partial void OnUpdateOrderProductChanged(Product? value)
+    {
+        if (value is not null)
+            UpdateOrder.ProductId = value.Id;
+    }
+
 
     partial void OnSelectedFilterStatusChanged(string value)
     {
@@ -94,23 +123,30 @@ public partial class MainOrderPageViewModel: ViewModelBase
     {
         if (value is not null)
         {
-            UpdateOrder.Id = value.Id;
-            UpdateOrder.ProductId = value.Product.Id;
-            UpdateOrder.ClientId = value.Client.Id;
-            UpdateOrder.Date = value.Date;
-            UpdateOrder.Status = value.Status;
-            UpdateOrder.Quantity = value.Quantity;
-            UpdateOrder.TotalPrice = value.TotalPrice;
+            // UpdateOrderClient = Clients.First(c => c.Id == value.Client.Id);
+            UpdateOrderProduct = Products.First(p => p.Id == value.Product.Id);
+            UpdateOrder = new UpdateOrderRequest()
+            {
+                Id = value.Id,
+                ProductId = value.Product.Id,
+                ClientId = value.Client.Id,
+                Date = value.Date,
+                Status = value.Status,
+                Quantity = value.Quantity,
+            };
         }
     }
+    #endregion
 
     private bool CanSave => CreateOrder.ProductId > 0 && CreateOrder.ClientId > 0 && CreateOrder.Quantity > 0;
 
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand]
     private async Task Save()
     {
         try
         {
+            if (!CanSave)
+                return;
             CreateOrder.Date = DateTime.Now;
             CreateOrder.TotalPrice =
                 Products.First(p => p.Id == CreateOrder.ProductId).Price * CreateOrder.Quantity;
@@ -134,11 +170,13 @@ public partial class MainOrderPageViewModel: ViewModelBase
 
     private bool CanUpdate => UpdateOrder.Id > 0 && UpdateOrder.ProductId > 0 && UpdateOrder.ClientId > 0 && UpdateOrder.Quantity > 0;
 
-    [RelayCommand(CanExecute = nameof(CanUpdate))]
+    [RelayCommand]
     private async Task Update()
     {
         try
         {
+            if (!CanUpdate)
+                return;
             UpdateOrder.TotalPrice =
                 Products.First(p => p.Id == UpdateOrder.ProductId).Price * UpdateOrder.Quantity;
             await ApiHelper.Put<UpdateOrderRequest>(UpdateOrder, $"orders", UpdateOrder.Id);
@@ -169,6 +207,8 @@ public partial class MainOrderPageViewModel: ViewModelBase
     {
         try
         {
+            if (!CanUpdate)
+                return;
             await ApiHelper.Delete($"orders", SelectedOrder!.Id);
             Orders.Remove(SelectedOrder);
         }

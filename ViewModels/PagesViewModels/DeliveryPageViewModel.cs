@@ -32,10 +32,8 @@ public partial class DeliveryPageViewModel: ViewModelBase
     [NotifyCanExecuteChangedFor(nameof(StatusUpdateCommand))]
     [ObservableProperty] private string? _selectedStatus;
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     private CreateDeliveryRequest _createDeliveryRequest = new CreateDeliveryRequest();
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     private UpdateDeliveryRequest _updateDeliveryRequest = new UpdateDeliveryRequest();
     [ObservableProperty] private DateTimeOffset? _createDeliveryDate;
     [ObservableProperty] private Order _createDeliveryOrderItem;
@@ -124,15 +122,16 @@ public partial class DeliveryPageViewModel: ViewModelBase
     #endregion
     private bool CanSave() =>
         CreateDeliveryDate != null
-        && CreateDeliveryRequest.DriverId > 0
-        && string.IsNullOrEmpty(CreateDeliveryRequest.Transport)
-        && string.IsNullOrEmpty(CreateDeliveryRequest.Route);
+        && !string.IsNullOrEmpty(CreateDeliveryRequest.Transport)
+        && !string.IsNullOrEmpty(CreateDeliveryRequest.Route);
 
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand]
     private async Task Save()
     {
         try
         {
+            if (!CanSave())
+                return;
             var delivery = await ApiHelper.Post<Delivery, CreateDeliveryRequest>(CreateDeliveryRequest, "deliveries");
             Deliveries.Add(delivery);
         }
@@ -152,16 +151,17 @@ public partial class DeliveryPageViewModel: ViewModelBase
 
     private bool CanUpdate() =>
         UpdateDeliveryRequest != null
-        && UpdateDeliveryRequest.DriverId > 0
         && UpdateDeliveryRequest.Date != null
         && string.IsNullOrEmpty(UpdateDeliveryRequest.Transport)
         && string.IsNullOrEmpty(UpdateDeliveryRequest.Route);
 
-    [RelayCommand(CanExecute = nameof(CanUpdate))]
+    [RelayCommand]
     private async Task Update()
     {
         try
         {
+            if (!CanUpdate())
+                return;
             CreateDeliveryRequest.Status = DeliveryStatus.Scheduled;
             await ApiHelper.Put(UpdateDeliveryRequest, $"deliveries", UpdateDeliveryRequest.Id);
             var delivery = Deliveries.First(d => d.Id == UpdateDeliveryRequest.Id);
@@ -193,6 +193,8 @@ public partial class DeliveryPageViewModel: ViewModelBase
     {
         try
         {
+            if (!CanDelete())
+                return;
             await ApiHelper.Delete($"deliveries", SelectedDelivery.Id);
             Deliveries.Remove(_selectedDelivery);
         }
@@ -217,6 +219,8 @@ public partial class DeliveryPageViewModel: ViewModelBase
     {
         try
         {
+            if (!CanDriverUpdate())
+                return;
             UpdateDeliveryRequest.DriverId = SelectedDriver?.Id ?? 1;
             await ApiHelper.Put(UpdateDeliveryRequest, $"deliveries", SelectedDelivery.Id);
             var delivery = Deliveries.First(d => d.Id == SelectedDelivery.Id);
@@ -238,11 +242,13 @@ public partial class DeliveryPageViewModel: ViewModelBase
 
     private bool CanStatusUpdate() => SelectedDelivery is not null && !string.IsNullOrEmpty(SelectedStatus);
 
-    [RelayCommand(CanExecute = nameof(CanStatusUpdate))]
+    [RelayCommand]
     private async Task StatusUpdate()
     {
         try
         {
+            if (!CanStatusUpdate())
+                return;
             UpdateDeliveryRequest.Status =
                 ProgramHelper.GetEnumValueFromEnumMember<DeliveryStatus>(SelectedStatus)!.Value;
             await ApiHelper.Put(UpdateDeliveryRequest, $"deliveries", SelectedDelivery.Id);
