@@ -1,21 +1,23 @@
+
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public class Client
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("company_name")]
+    [JsonProperty("company_name")]
     public string CompanyName { get; set; }
 
-    [JsonPropertyName("contact_person")]
+    [JsonProperty("contact_person")]
     public string ContactPerson { get; set; }
 
-    [JsonPropertyName("email")]
+    [JsonProperty("email")]
     public string Email { get; set; }
 
-    [JsonPropertyName("telephone_number")]
+    [JsonProperty("telephone_number")]
     public string TelephoneNumber { get; set; }
 }

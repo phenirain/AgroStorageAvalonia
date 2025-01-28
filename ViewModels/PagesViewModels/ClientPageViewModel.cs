@@ -50,11 +50,14 @@ public partial class ClientPageViewModel: ViewModelBase
     {
         if (value is not null)
         {
-            UpdateClient.Id = value.Id;
-            UpdateClient.CompanyName = value.CompanyName;
-            UpdateClient.ContactPerson = value.ContactPerson;
-            UpdateClient.TelephoneNumber = value.TelephoneNumber;
-            UpdateClient.Email = value.Email;
+            UpdateClient = new UpdateClientRequest()
+            {
+                Id = value.Id,
+                CompanyName = value.CompanyName,
+                ContactPerson = value.ContactPerson,
+                TelephoneNumber = value.TelephoneNumber,
+                Email = value.Email
+            };
         }
     }
 

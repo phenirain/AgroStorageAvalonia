@@ -1,15 +1,20 @@
 using System;
-using System.Text.Json.Serialization;
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace desktop.Models.Entities;
 
 public enum OrderStatus
 {
+    [Description("Зарезервирован")]
     Reserved,
+    [Description("Оплачен")]
     Paid,
+    [Description("В доставке")]
     Delivering,
+    [Description("Завершен")]
     Completed,
+    [Description("Отменен")]
     Canceled
 }
 
@@ -28,7 +33,7 @@ public class Order
     public DateTime Date { get; set; }
 
     [JsonProperty("order_status")]
-    [Newtonsoft.Json.JsonConverter(typeof(JsonStringEnumConverter))]
+    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public OrderStatus Status { get; set; }
 
     [JsonProperty("quantity")]

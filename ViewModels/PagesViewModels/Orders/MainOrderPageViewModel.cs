@@ -52,6 +52,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     public MainOrderPageViewModel(ContentControl currentPage)
     {
         OrderStatuses = ProgramHelper.GetEnumMemberValues<OrderStatus>();
+        _currentPage = currentPage;
         Task.Run(() => LoadOrders());
         Task.Run(() => LoadClients());
         Task.Run(() => LoadProducts());

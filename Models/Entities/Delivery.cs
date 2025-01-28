@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
@@ -7,9 +8,13 @@ namespace desktop.Models.Entities;
 
 public enum DeliveryStatus
 {
+    [Description("Запланирована")]
     Scheduled,
+    [Description("В пути")]
     OnTheWay,
+    [Description("Отмененная")]
     Canceled,
+    [Description("Завершенная")]
     Completed
 }
 
@@ -22,7 +27,7 @@ public class Delivery
     [JsonProperty("order")]
     public Order Order { get; set; }
 
-    [JsonProperty("date")]
+    [JsonProperty("delivery_date")]
     public DateTime Date { get; set; }
 
     [JsonProperty("transport")]
@@ -32,7 +37,7 @@ public class Delivery
     public string Route { get; set; }
 
     [JsonProperty("status")]
-    [Newtonsoft.Json.JsonConverter(typeof(JsonStringEnumConverter))]
+    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public DeliveryStatus Status { get; set; }
 
     [JsonProperty("driver")]

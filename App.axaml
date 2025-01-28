@@ -16,6 +16,7 @@
 
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
         <Style Selector="Border.border-default">
             <Setter Property="BorderBrush" Value="LightGray"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>

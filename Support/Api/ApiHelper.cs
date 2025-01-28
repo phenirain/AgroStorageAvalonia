@@ -1,17 +1,22 @@
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using desktop.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace desktop.Support.Api;
 
 public static class ApiHelper
 {
-    private const string _url = "http://localhost:1313/api";
+    private const string _url = "http://82.97.241.71:1313/api";
     
+    private static JsonSerializerSettings settings = new JsonSerializerSettings
+    {
+        Converters = { new StringEnumConverter() }, 
+        Formatting = Formatting.Indented 
+    };
     
     public static async Task<TResponse?> GetAll<TResponse>(string path)
     {
@@ -20,7 +25,7 @@ public static class ApiHelper
         if (response.StatusCode == HttpStatusCode.OK)
         {
             string responseText = await response.Content.ReadAsStringAsync();
-            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>?>(responseText);
+            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>?>(responseText, settings);
             if (result != null)
             {
                 if (result.Status != 200)
@@ -38,12 +43,12 @@ public static class ApiHelper
     public static async Task<TResponse> Post<TResponse, T>(T entity, string path)
     {
         var client = new HttpClient();
-        string json = JsonConvert.SerializeObject(entity);
+        string json = JsonConvert.SerializeObject(entity, settings);
         HttpContent body = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await client.PostAsync($"{_url}/{path}", body);
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>>(await response.Content.ReadAsStringAsync());
+            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>>(await response.Content.ReadAsStringAsync(), settings);
             if (result != null)
             {
                 if (result.Status != 200 || result.Status == 201)
@@ -60,12 +65,12 @@ public static class ApiHelper
     public static async Task Put<T>(T entity, string path, int id)
     {
         var client = new HttpClient();
-        string json = JsonConvert.SerializeObject(entity);
+        string json = JsonConvert.SerializeObject(entity, settings);
         HttpContent body = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await client.PutAsync($"{_url}/{path}/{id}", body);
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            HttpResponse<object>? result = JsonConvert.DeserializeObject<HttpResponse<object>>(await response.Content.ReadAsStringAsync());
+            HttpResponse<object>? result = JsonConvert.DeserializeObject<HttpResponse<object>>(await response.Content.ReadAsStringAsync(), settings);
             if (result != null)
             {
                 if (result.Status != 200)
@@ -84,7 +89,7 @@ public static class ApiHelper
         if (response.StatusCode == HttpStatusCode.OK)
         {
             HttpResponse<object>? result =
-                JsonConvert.DeserializeObject<HttpResponse<object>>(await response.Content.ReadAsStringAsync());
+                JsonConvert.DeserializeObject<HttpResponse<object>>(await response.Content.ReadAsStringAsync(), settings);
             if (result != null)
             {
                 if (result.Status!= 200)

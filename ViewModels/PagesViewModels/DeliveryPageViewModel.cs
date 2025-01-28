@@ -21,8 +21,9 @@ namespace desktop.ViewModels.PagesViewModels;
 public partial class DeliveryPageViewModel: ViewModelBase
 {
 
-    public List<string> Statuses { get; set; } = ProgramHelper.GetEnumMemberValues<DeliveryStatus>();   public List<Driver> Drivers { get; set; }
-    public List<Order> Orders { get; set; }
+    public List<string> Statuses { get; set; } = ProgramHelper.GetEnumMemberValues<DeliveryStatus>();
+    [ObservableProperty] private ObservableCollection<Driver> _drivers;
+    [ObservableProperty ]private ObservableCollection<Order> _orders;
     [ObservableProperty] private ObservableCollection<Delivery> _deliveries;
     [ObservableProperty] private Delivery? _selectedDelivery;
     [ObservableProperty]
@@ -37,6 +38,9 @@ public partial class DeliveryPageViewModel: ViewModelBase
     [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     private UpdateDeliveryRequest _updateDeliveryRequest = new UpdateDeliveryRequest();
     [ObservableProperty] private DateTimeOffset? _createDeliveryDate;
+    [ObservableProperty] private Order _createDeliveryOrderItem;
+    [ObservableProperty] private DateTimeOffset? _updateDeliveryDate;
+    [ObservableProperty] private Order _updateDeliveryOrderItem;
 
     private readonly ContentControl _currentPage;
     public DeliveryPageViewModel(ContentControl currentPage)
@@ -56,16 +60,32 @@ public partial class DeliveryPageViewModel: ViewModelBase
 
     private async Task LoadOrders()
     {
-        Orders = await ApiHelper.GetAll<List<Order>>("orders");
+        Orders = await ApiHelper.GetAll<ObservableCollection<Order>>("orders");
     }
 
     private async Task LoadDrivers()
     {
-        Drivers = await ApiHelper.GetAll<List<Driver>>("drivers");
+        Drivers = await ApiHelper.GetAll<ObservableCollection<Driver>>("deliveries/drivers");
     }
 
     #endregion
 
+    #region ChangeHandlers
+
+    partial void OnCreateDeliveryOrderItemChanged(Order? value)
+    {
+        if (value is not null)
+            CreateDeliveryRequest.OrderId = value.Id;
+    }
+
+    partial void OnUpdateDeliveryOrderItemChanged(Order? value)
+    {
+        if (value is not null)
+        {
+            UpdateDeliveryRequest.OrderId = value.Id;
+        }
+    }
+    
     partial void OnCreateDeliveryDateChanged(DateTimeOffset? value)
     {
         if (value is not null)
@@ -74,19 +94,34 @@ public partial class DeliveryPageViewModel: ViewModelBase
         }
     }
 
+    partial void OnUpdateDeliveryDateChanged(DateTimeOffset? value)
+    {
+        if (value is not null)
+        {
+            UpdateDeliveryRequest.Date = value.Value.DateTime;
+        }
+    }
+
     partial void OnSelectedDeliveryChanged(Delivery? value)
     {
         if (value is not null)
         {
-            UpdateDeliveryRequest.Id = value.Id;
-            UpdateDeliveryRequest.Date = value.Date;
-            UpdateDeliveryRequest.Transport = value.Transport;
-            UpdateDeliveryRequest.Route = value.Route;
-            UpdateDeliveryRequest.Status = value.Status;
-            UpdateDeliveryRequest.DriverId = value.Driver.Id;
+            UpdateDeliveryOrderItem = Orders.First(o => o.Id == value.Order.Id);
+            UpdateDeliveryDate = new DateTimeOffset(value.Date);;
+            UpdateDeliveryRequest = new UpdateDeliveryRequest()
+            {
+                Id = value.Id,
+                Date = value.Date,
+                OrderId = value.Order.Id,
+                Transport = value.Transport,
+                Route = value.Route,
+                Status = value.Status,
+                DriverId = value.Driver?.Id ?? 1
+            };
         }
     }
 
+    #endregion
     private bool CanSave() =>
         CreateDeliveryDate != null
         && CreateDeliveryRequest.DriverId > 0
@@ -182,7 +217,7 @@ public partial class DeliveryPageViewModel: ViewModelBase
     {
         try
         {
-            UpdateDeliveryRequest.DriverId = SelectedDriver.Id;
+            UpdateDeliveryRequest.DriverId = SelectedDriver?.Id ?? 1;
             await ApiHelper.Put(UpdateDeliveryRequest, $"deliveries", SelectedDelivery.Id);
             var delivery = Deliveries.First(d => d.Id == SelectedDelivery.Id);
             delivery.Driver = Drivers.First(d => d.Id == UpdateDeliveryRequest.DriverId);

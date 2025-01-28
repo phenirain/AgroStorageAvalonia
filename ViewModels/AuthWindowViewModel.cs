@@ -17,17 +17,17 @@ namespace desktop.ViewModels;
 
 public partial class AuthWindowViewModel: ViewModelBase
 {
-    // [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    [NotifyCanExecuteChangedFor(nameof(AuthCommand))]
     [ObservableProperty]
     private string username;
-    // [NotifyCanExecuteChangedFor(nameof(LogInCommand))]
+    [NotifyCanExecuteChangedFor(nameof(AuthCommand))]
     [ObservableProperty]
     private string password;
 
-    // private bool CanLogIn => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+    private bool CanLogIn => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
     
-    // [RelayCommand(CanExecute = nameof(CanLogIn))]
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanLogIn))]
+    // [RelayCommand]
     public async Task Auth()
     {
         try

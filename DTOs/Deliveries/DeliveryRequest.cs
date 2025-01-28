@@ -7,6 +7,7 @@ namespace desktop.DTOs.Deliveries;
 public class CreateDeliveryRequest
 {
     [JsonPropertyName("order_id")]
+    
     public int OrderId { get; set; }
 
     [JsonPropertyName("delivery_date")]

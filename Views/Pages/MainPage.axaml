@@ -26,7 +26,6 @@
                     Text="Состояние склада"></TextBlock>
                 <Border Classes="block">
                     <DataGrid
-                        Background="#444444"
                         BorderBrush="LightGray"
                         ItemsSource="{Binding Products}">
                         <DataGrid.Columns>

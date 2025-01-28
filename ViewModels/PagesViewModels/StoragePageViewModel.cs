@@ -71,14 +71,17 @@ public partial class StoragePageViewModel: ViewModelBase
     {
         if (value is not null)
         {
-            UpdateProduct.Id = value.Id;
-            UpdateProduct.Name = value.Name;
-            UpdateProduct.Article = value.Article;
-            UpdateProduct.CategoryId = value.Category.Id;
-            UpdateProduct.Quantity = value.Quantity;
-            UpdateProduct.Price = value.Price;
-            UpdateProduct.Location = value.Location;
-            UpdateProduct.ReservedQuantity = value.ReservedQuantity;
+            UpdateProduct = new UpdateProductRequest()
+            {
+                Id = value.Id,
+                Name = value.Name,
+                Article = value.Article,
+                CategoryId = value.Category.Id,
+                Quantity = value.Quantity,
+                Price = value.Price,
+                Location = value.Location,
+                ReservedQuantity = value.ReservedQuantity
+            };
         }
     }
 

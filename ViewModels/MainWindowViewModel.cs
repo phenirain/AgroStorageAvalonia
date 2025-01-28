@@ -15,7 +15,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel(string role)
     {
-        CurrentPage = new MainPage();
+        CurrentPage = new DeliveryPage(CurrentPage);
         _role = role;
     }
 

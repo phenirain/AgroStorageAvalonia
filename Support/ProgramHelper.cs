@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -16,8 +17,8 @@ public class ProgramHelper
         var memberValues = values.Select(value =>
         {
             var fieldInfo = enumType.GetField(value.ToString());
-            var attribute = fieldInfo.GetCustomAttribute<EnumMemberAttribute>();
-            return attribute?.Value; // Возвращаем значение из атрибута EnumMember
+            var attribute = fieldInfo.GetCustomAttribute<DescriptionAttribute>();
+            return attribute?.Description.ToString(); // Возвращаем значение из атрибута EnumMember
         }).ToList();
 
         return memberValues;

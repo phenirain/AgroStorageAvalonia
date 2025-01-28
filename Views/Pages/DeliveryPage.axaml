@@ -59,8 +59,7 @@
                                 PlaceholderText="Выберите заказ"
                                 ItemsSource="{Binding Orders}"
                                 DisplayMemberBinding="{Binding Id}"
-                                SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding CreateDeliveryRequest.OrderId}"></ComboBox>
+                                SelectedItem="{Binding CreateDeliveryOrderItem}"></ComboBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Маршрут"></TextBlock>
@@ -98,8 +97,7 @@
                                 PlaceholderText="Выберите заказ"
                                 ItemsSource="{Binding Orders}"
                                 DisplayMemberBinding="{Binding Id}"
-                                SelectedValueBinding="{Binding Id}"
-                                SelectedItem="{Binding UpdateDeliveryRequest.OrderId}"></ComboBox>
+                                SelectedItem="{Binding UpdateDeliveryOrderItem}"></ComboBox>
                             <TextBlock
                                 Classes="p"
                                 Text="Маршрут"></TextBlock>
@@ -110,7 +108,7 @@
                             <TextBlock
                                 Classes="p"
                                 Text="Дата"></TextBlock>
-                            <DatePicker SelectedDate="{Binding UpdateDeliveryRequest}"></DatePicker>
+                            <DatePicker SelectedDate="{Binding UpdateDeliveryDate}"></DatePicker>
                             <TextBlock
                                 Classes="p"
                                 Text="Транспорт"></TextBlock>
