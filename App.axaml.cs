@@ -24,7 +24,7 @@ public partial class App : Application
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
             // desktop.MainWindow = new AuthWindow();
-            desktop.MainWindow = new MainWindow("Manager");
+            desktop.MainWindow = new AuthWindow();
             desktop.MainWindow.Show();
         }
 

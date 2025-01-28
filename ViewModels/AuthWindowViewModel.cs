@@ -26,12 +26,13 @@ public partial class AuthWindowViewModel: ViewModelBase
 
     private bool CanLogIn => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
     
-    [RelayCommand(CanExecute = nameof(CanLogIn))]
+    [RelayCommand]
     // [RelayCommand]
     public async Task Auth()
     {
         try
         {
+            if (!CanLogIn) return;
             var currentWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
                 ? desktop.Windows.FirstOrDefault(w => w.IsActive)
                 : null;
