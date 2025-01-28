@@ -86,7 +86,7 @@ public partial class StoragePageViewModel: ViewModelBase
     {
         if (value is not null)
         {
-            UpdateProductCategory = Categories.First(c => c.Id == value.Id);
+            UpdateProductCategory = Categories.First(c => c.Id == value.Category.Id);
             UpdateProduct = new UpdateProductRequest()
             {
                 Id = value.Id,
@@ -120,6 +120,7 @@ public partial class StoragePageViewModel: ViewModelBase
                 return;
             var product = await ApiHelper.Post<Product, CreateProductRequest>(CreateProduct, "products");
             Products.Add(product);
+            Products = new ObservableCollection<Product>(Products);
         }
         catch (Exception ex)
         {

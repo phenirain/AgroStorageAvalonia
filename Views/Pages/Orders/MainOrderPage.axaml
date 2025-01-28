@@ -25,6 +25,7 @@
                     SelectedItem="{Binding SelectedFilterStatus}"
                     />
                 <Border
+                    Height="500"
                     Classes="border-default"
                     Padding="5">
                     <DataGrid

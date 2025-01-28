@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using desktop.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace desktop.Support.Api;
 
@@ -15,7 +16,11 @@ public static class ApiHelper
     private static JsonSerializerSettings settings = new JsonSerializerSettings
     {
         Converters = { new StringEnumConverter() }, 
-        Formatting = Formatting.Indented 
+        Formatting = Formatting.Indented,
+        ContractResolver = new DefaultContractResolver
+        {
+            NamingStrategy = new SnakeCaseNamingStrategy()
+        }
     };
     
     public static async Task<TResponse?> GetAll<TResponse>(string path)
@@ -25,7 +30,7 @@ public static class ApiHelper
         if (response.StatusCode == HttpStatusCode.OK)
         {
             string responseText = await response.Content.ReadAsStringAsync();
-            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>?>(responseText, settings);
+            HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>?>(responseText, settings: settings);
             if (result != null)
             {
                 if (result.Status != 200)
@@ -51,11 +56,11 @@ public static class ApiHelper
             HttpResponse<TResponse>? result = JsonConvert.DeserializeObject<HttpResponse<TResponse>>(await response.Content.ReadAsStringAsync(), settings);
             if (result != null)
             {
-                if (result.Status != 200 || result.Status == 201)
+                if (result.Status == 200 || result.Status == 201)
                 {
-                    throw new RequestException($"Bad request to {_url}/{path}: Message: {result.Message}, Status code: {result.Status}");
+                    return result.Data!;
                 }
-                return result.Data!;
+                throw new RequestException($"Bad request to {_url}/{path}: Message: {result.Message}, Status code: {result.Status}");
             }
             throw new RequestException($"Failed to parse response from {_url}/{path}, Status code: {response.StatusCode}");
         }
@@ -77,6 +82,7 @@ public static class ApiHelper
                 {
                     throw new RequestException($"Bad request to {_url}/{path}/{id}: Message: {result.Message}, Status code: {result.Status}");
                 }
+                return;
             }
         }
         throw new RequestException($"Failed to put to {_url}/{path}/{id}: Status code: {response.StatusCode}");

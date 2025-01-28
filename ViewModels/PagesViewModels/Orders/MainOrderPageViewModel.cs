@@ -123,7 +123,7 @@ public partial class MainOrderPageViewModel: ViewModelBase
     {
         if (value is not null)
         {
-            // UpdateOrderClient = Clients.First(c => c.Id == value.Client.Id);
+            UpdateOrderClient = Clients.First(c => c.Id == value.Client.Id);
             UpdateOrderProduct = Products.First(p => p.Id == value.Product.Id);
             UpdateOrder = new UpdateOrderRequest()
             {
@@ -185,6 +185,8 @@ public partial class MainOrderPageViewModel: ViewModelBase
             order.Client = Clients.First(c => c.Id == UpdateOrder.ClientId);
             order.TotalPrice = UpdateOrder.TotalPrice;
             order.Quantity = UpdateOrder.Quantity;
+            order.Status = UpdateOrder.Status;
+            Orders = new ObservableCollection<Order>(_allOrders);
         }
         catch (Exception ex)
         {

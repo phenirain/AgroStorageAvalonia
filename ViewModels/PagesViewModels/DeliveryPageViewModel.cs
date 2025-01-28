@@ -171,6 +171,7 @@ public partial class DeliveryPageViewModel: ViewModelBase
             delivery.Route = UpdateDeliveryRequest.Route;
             delivery.Status = UpdateDeliveryRequest.Status;
             delivery.Driver = Drivers.First(d => d.Id == UpdateDeliveryRequest.DriverId);
+            Deliveries = new ObservableCollection<Delivery>(Deliveries);
         }
         catch (Exception ex)
         {

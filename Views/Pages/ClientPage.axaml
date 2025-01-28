@@ -7,7 +7,7 @@
                 xmlns:vm="using:desktop.ViewModels.PagesViewModels"
                 x:DataType="vm:ClientPageViewModel">
 
-    <Grid RowDefinitions="60, *" Margin="10">
+    <Grid RowDefinitions="60, *" Margin="10, 10, 10, 100">
         <Button
             Grid.Row="0"
             Content="Назад"
@@ -24,6 +24,7 @@
                     Watermark="Введите компанию"
                     Text="{Binding SearchText}"/>
                 <Border
+                    Height="500"
                     Classes="border-default"
                     Padding="5">
                     <DataGrid
@@ -101,7 +102,7 @@
                             Spacing="10">
                             <TextBlock
                                 Classes="h1"
-                                Text="Создание клиента"></TextBlock>
+                                Text="Редактирование клиента"></TextBlock>
                             <TextBlock
                                 Classes="p"
                                 Text="Название компании"></TextBlock>

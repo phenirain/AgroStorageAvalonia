@@ -16,6 +16,7 @@
             Command="{Binding BackCommand}"></Button>
         <Grid Grid.Row="1" ColumnDefinitions="4*, 1.5*">
             <Border
+                Height="500"
                 Classes="border-default"
                 Padding="5">
                 <DataGrid

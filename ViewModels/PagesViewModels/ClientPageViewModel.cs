@@ -119,6 +119,7 @@ public partial class ClientPageViewModel: ViewModelBase
             client.ContactPerson = UpdateClient.ContactPerson;
             client.TelephoneNumber = UpdateClient.TelephoneNumber;
             client.Email = UpdateClient.Email;
+            Clients = new ObservableCollection<Client>(_allClients);
         }
         catch (Exception ex)
         {

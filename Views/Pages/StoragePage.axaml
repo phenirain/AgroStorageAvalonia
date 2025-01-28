@@ -26,6 +26,7 @@
                     SelectedItem="{Binding SelectedCategory}"
                     PlaceholderText="Выберите категорию"/>
                 <Border
+                    Height="500"
                     Classes="border-default"
                     Padding="5">
                     <DataGrid
