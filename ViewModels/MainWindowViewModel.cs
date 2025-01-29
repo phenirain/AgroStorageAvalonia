@@ -15,7 +15,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel(string role)
     {
-        CurrentPage.Content = new MainPage();
+        CurrentPage = new MainPage();
         _role = role;
     }
 
