@@ -16,9 +16,9 @@ public partial class MainPageViewModel : ObservableObject
     [ObservableProperty] private ObservableCollection<Product> _products;
     [ObservableProperty] private ObservableCollection<Delivery> _deliveries;
     private List<Delivery> deliveries;
-    public List<Delivery> ScheduledDeliveries { get; set; }
-    public List<Delivery> ActiveDeliveries { get; set; }
-    public List<Delivery> CompletedDeliveries { get; set; }
+    [ObservableProperty] private ObservableCollection<Delivery> _scheduledDeliveries;
+    [ObservableProperty] private ObservableCollection<Delivery> _activeDeliveries;
+    [ObservableProperty] private ObservableCollection<Delivery> _completedDeliveries;
 
     public MainPageViewModel()
     {
@@ -32,9 +32,9 @@ public partial class MainPageViewModel : ObservableObject
     {
         Deliveries = await ApiHelper.GetAll<ObservableCollection<Delivery>>("deliveries");
         deliveries = Deliveries.ToList();
-        ScheduledDeliveries = Deliveries.Where(d => d.Status == DeliveryStatus.Scheduled).ToList();
-        ActiveDeliveries = Deliveries.Where(d => d.Status == DeliveryStatus.OnTheWay).ToList();
-        CompletedDeliveries = Deliveries.Where(d => d.Status == DeliveryStatus.Completed).ToList();
+        ScheduledDeliveries = new ObservableCollection<Delivery>(Deliveries.Where(d => d.Status == DeliveryStatus.Scheduled).ToList());
+        ActiveDeliveries = new ObservableCollection<Delivery>(Deliveries.Where(d => d.Status == DeliveryStatus.OnTheWay).ToList());
+        CompletedDeliveries = new ObservableCollection<Delivery>(Deliveries.Where(d => d.Status == DeliveryStatus.Completed).ToList());
     }
 
 

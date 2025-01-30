@@ -9,10 +9,17 @@
 
     <ContentControl.Styles>
         <Style Selector="Border.block">
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
             <Setter Property="Height" Value="350"></Setter>
             <Setter Property="CornerRadius" Value="10"></Setter>
         </Style>
         <Style Selector="Border.mini">
+            <Setter Property="Width" Value="400"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="15"></Setter>
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="CornerRadius" Value="5"></Setter>
         </Style>
@@ -88,7 +95,7 @@
                 <TextBlock
                     Classes="h1"
                     Text="Доставки"></TextBlock>
-                <Border Classes="block" Padding="10">
+                <Border Classes="block" Height="425" Padding="10">
                     <StackPanel Spacing="10">
                         <TextBlock
                             Text="Запланированные доставки"
@@ -98,6 +105,12 @@
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ItemsSource="{Binding ScheduledDeliveries}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
@@ -122,6 +135,12 @@
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ItemsSource="{Binding ActiveDeliveries}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
@@ -149,10 +168,16 @@
                             Background="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ItemsSource="{Binding CompletedDeliveries}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border
-                                        Classes="mini">
+                                        Classes="mini" Height="125">
                                         <StackPanel Spacing="2">
                                             <TextBlock
                                                 Text="{Binding Id, StringFormat='Доставка №{0}'}"
